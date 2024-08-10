@@ -34,47 +34,47 @@ namespace vMenuClient.menus
 
         public List<BanRecord> banlist = new();
 
-        readonly Menu bannedPlayer = new("Banned Player", "Ban Record: ");
+        readonly Menu bannedPlayer = new("封禁玩家", "封禁记录: ");
 
         /// <summary>
         /// Creates the menu.
         /// </summary>
         private void CreateMenu()
         {
-            menu = new Menu(Game.Player.Name, "Banned Players Management");
+            menu = new Menu(Game.Player.Name, "封禁玩家管理");
 
-            menu.InstructionalButtons.Add(Control.Jump, "Filter Options");
+            menu.InstructionalButtons.Add(Control.Jump, "过滤选项");
             menu.ButtonPressHandlers.Add(new Menu.ButtonPressHandler(Control.Jump, Menu.ControlPressCheckType.JUST_RELEASED, new Action<Menu, Control>(async (a, b) =>
             {
                 if (banlist.Count > 1)
                 {
-                    var filterText = await GetUserInput("Filter username or ban id (leave this empty to reset the filter)");
+                    var filterText = await GetUserInput("过滤用户名或禁令ID（留空以重置过滤器）");
                     if (string.IsNullOrEmpty(filterText))
                     {
-                        Subtitle.Custom("Filters have been cleared.");
+                        Subtitle.Custom("过滤器已清除。");
                         menu.ResetFilter();
                         UpdateBans();
                     }
                     else
                     {
                         menu.FilterMenuItems(item => item.ItemData is BanRecord br && (br.playerName.ToLower().Contains(filterText.ToLower()) || br.uuid.ToLower().Contains(filterText.ToLower())));
-                        Subtitle.Custom("Filter has been applied.");
+                        Subtitle.Custom("过滤器已应用。");
                     }
                 }
                 else
                 {
-                    Notify.Error("At least 2 players need to be banned in order to use the filter function.");
+                    Notify.Error("需要至少禁用2个玩家才能使用过滤功能。");
                 }
 
                 Log($"Button pressed: {a} {b}");
             }), true));
 
-            bannedPlayer.AddMenuItem(new MenuItem("Player Name"));
-            bannedPlayer.AddMenuItem(new MenuItem("Banned By"));
-            bannedPlayer.AddMenuItem(new MenuItem("Banned Until"));
-            bannedPlayer.AddMenuItem(new MenuItem("Player Identifiers"));
-            bannedPlayer.AddMenuItem(new MenuItem("Banned For"));
-            bannedPlayer.AddMenuItem(new MenuItem("~r~Unban", "~r~Warning, unbanning the player can NOT be undone. You will NOT be able to ban them again until they re-join the server. Are you absolutely sure you want to unban this player? ~s~Tip: Tempbanned players will automatically get unbanned if they log on to the server after their ban date has expired."));
+            bannedPlayer.AddMenuItem(new MenuItem("玩家名称"));
+            bannedPlayer.AddMenuItem(new MenuItem("封禁者"));
+            bannedPlayer.AddMenuItem(new MenuItem("封禁到期"));
+            bannedPlayer.AddMenuItem(new MenuItem("玩家标识符"));
+            bannedPlayer.AddMenuItem(new MenuItem("封禁原因"));
+            bannedPlayer.AddMenuItem(new MenuItem("~r~解禁", "~r~警告，解禁玩家不能撤销。解禁后，在他们重新加入服务器之前，无法再次封禁他们。确定要解禁此玩家吗？~s~提示：如果禁令到期后临时禁令玩家重新登录服务器，他们将自动解除禁令。"));
 
             // should be enough for now to cover all possible identifiers.
             var colors = new List<string>() { "~r~", "~g~", "~b~", "~o~", "~y~", "~p~", "~s~", "~t~", };
@@ -95,7 +95,7 @@ namespace vMenuClient.menus
             {
                 if (index == 5 && IsAllowed(Permission.OPUnban))
                 {
-                    if (item.Label == "Are you sure?")
+                    if (item.Label == "你确定吗？")
                     {
                         if (banlist.Contains(currentRecord))
                         {
@@ -105,12 +105,12 @@ namespace vMenuClient.menus
                         }
                         else
                         {
-                            Notify.Error("Somehow you managed to click the unban button but this ban record you're apparently viewing does not even exist. Weird...");
+                            Notify.Error("不知怎的，你点击了解禁按钮，但你正在查看的禁令记录实际上并不存在。奇怪...");
                         }
                     }
                     else
                     {
-                        item.Label = "Are you sure?";
+                        item.Label = "你确定吗？";
                     }
                 }
                 else
@@ -124,26 +124,26 @@ namespace vMenuClient.menus
             {
                 currentRecord = item.ItemData;
 
-                bannedPlayer.MenuSubtitle = "Ban Record: ~y~" + currentRecord.playerName;
+                bannedPlayer.MenuSubtitle = "封禁记录： ~y~" + currentRecord.playerName;
                 var nameItem = bannedPlayer.GetMenuItems()[0];
                 var bannedByItem = bannedPlayer.GetMenuItems()[1];
                 var bannedUntilItem = bannedPlayer.GetMenuItems()[2];
                 var playerIdentifiersItem = bannedPlayer.GetMenuItems()[3];
                 var banReasonItem = bannedPlayer.GetMenuItems()[4];
                 nameItem.Label = currentRecord.playerName;
-                nameItem.Description = "Player name: ~y~" + currentRecord.playerName;
+                nameItem.Description = "玩家名称: ~y~" + currentRecord.playerName;
                 bannedByItem.Label = currentRecord.bannedBy;
-                bannedByItem.Description = "Player banned by: ~y~" + currentRecord.bannedBy;
+                bannedByItem.Description = "封禁者:  ~y~" + currentRecord.bannedBy;
                 if (currentRecord.bannedUntil.Date.Year == 3000)
                 {
-                    bannedUntilItem.Label = "Forever";
+                    bannedUntilItem.Label = "永久";
                 }
                 else
                 {
                     bannedUntilItem.Label = currentRecord.bannedUntil.Date.ToString();
                 }
 
-                bannedUntilItem.Description = "This player is banned until: " + currentRecord.bannedUntil.Date.ToString();
+                bannedUntilItem.Description = "此玩家被封禁到: " + currentRecord.bannedUntil.Date.ToString();
                 playerIdentifiersItem.Description = "";
 
                 var i = 0;
@@ -154,7 +154,7 @@ namespace vMenuClient.menus
                     // gave builtin.everyone access to view the banlist.
                     if (id.StartsWith("ip:") && !IsAllowed(Permission.OPUnban))
                     {
-                        playerIdentifiersItem.Description += $"{colors[i]}ip: (hidden) ";
+                        playerIdentifiersItem.Description += $"{colors[i]}ip: (隐藏) ";
                     }
                     else
                     {
@@ -162,14 +162,14 @@ namespace vMenuClient.menus
                     }
                     i++;
                 }
-                banReasonItem.Description = "Banned for: " + currentRecord.banReason;
+                banReasonItem.Description = "封禁原因: " + currentRecord.banReason;
 
                 var unbanPlayerBtn = bannedPlayer.GetMenuItems()[5];
                 unbanPlayerBtn.Label = "";
                 if (!IsAllowed(Permission.OPUnban))
                 {
                     unbanPlayerBtn.Enabled = false;
-                    unbanPlayerBtn.Description = "You are not allowed to unban players. You are only allowed to view their ban record.";
+                    unbanPlayerBtn.Description = "你无权解禁玩家。你只能查看他们的封禁记录。";
                     unbanPlayerBtn.LeftIcon = MenuItem.Icon.LOCK;
                 }
 
@@ -189,7 +189,7 @@ namespace vMenuClient.menus
 
             foreach (var ban in banlist)
             {
-                var recordBtn = new MenuItem(ban.playerName, $"~y~{ban.playerName}~s~ was banned by ~y~{ban.bannedBy}~s~ until ~y~{ban.bannedUntil}~s~ for ~y~{ban.banReason}~s~.")
+                var recordBtn = new MenuItem(ban.playerName, $"~y~{ban.playerName}~s~ 被 ~y~{ban.bannedBy}~s~ 一直封禁到 ~y~{ban.bannedUntil}~s~ 因为 ~y~{ban.banReason}~s~.")
                 {
                     Label = "→→→",
                     ItemData = ban

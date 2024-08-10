@@ -387,11 +387,12 @@ namespace vMenuClient
         /// </summary>
         public static async void QuitGame()
         {
-            Notify.Info("The game will exit in 5 seconds.");
-            Debug.WriteLine("Game will be terminated in 5 seconds, because the player used the Quit Game option in vMenu.");
+            Notify.Info("游戏将在 5 秒内退出。");
+            Debug.WriteLine("游戏将在 5 秒内终止，因为玩家使用了 vMenu 中的退出游戏选项。");
             await BaseScript.Delay(5000);
-            ForceSocialClubUpdate(); // bye bye
+            ForceSocialClubUpdate(); // 再见
         }
+
         #endregion
 
         #region Teleport to player (or teleport into the player's vehicle)
@@ -413,7 +414,7 @@ namespace vMenuClient
                     var playerPedObj = player.Character;
                     if (Game.PlayerPed == playerPedObj)
                     {
-                        Notify.Error("Sorry, you can ~r~~h~not~h~ ~s~teleport to yourself!");
+                       Notify.Error("抱歉，您不能传送到自己！");
                         return;
                     }
 
@@ -470,20 +471,17 @@ namespace vMenuClient
                             if (vehicle.Exists() && !vehicle.IsDead && IsAnyVehicleSeatEmpty(vehicle.Handle))
                             {
                                 TaskWarpPedIntoVehicle(Game.PlayerPed.Handle, vehicle.Handle, (int)VehicleSeat.Any);
-                                Notify.Success("Teleported into ~g~<C>" + GetPlayerName(playerId) + "</C>'s ~s~vehicle.");
+                                Notify.Success("传送到~g~<C>" + GetPlayerName(playerId) + "</C>~s~的车辆中。");
                             }
-                            // If there are not enough empty vehicle seats or the vehicle doesn't exist/is dead then notify the user.
                             else
                             {
-                                // If there's only one seat on this vehicle, tell them that it's a one-seater.
                                 if (totalVehicleSeats == 1)
                                 {
-                                    Notify.Error("This vehicle only has room for 1 player!");
+                                    Notify.Error("这辆车只能容纳1名玩家！");
                                 }
-                                // Otherwise, tell them there's not enough empty seats remaining.
                                 else
                                 {
-                                    Notify.Error("Not enough empty vehicle seats remaining!");
+                                    Notify.Error("没有足够的空座位！");
                                 }
                             }
                         }
@@ -493,13 +491,13 @@ namespace vMenuClient
                 // Notify the user.
                 else
                 {
-                    Notify.Success("Teleported to ~y~<C>" + GetPlayerName(playerId) + "</C>~s~.");
+                    Notify.Success("传送到~y~<C>" + GetPlayerName(playerId) + "</C>~s~。");
                 }
             }
             // The specified playerId does not exist, notify the user of the error.
-            else
+           else
             {
-                Notify.Error(CommonErrors.PlayerNotFound, placeholderValue: "So the teleport has been cancelled.");
+                Notify.Error(CommonErrors.PlayerNotFound, placeholderValue: "传送已取消。");
             }
         }
         #endregion
@@ -613,30 +611,30 @@ namespace vMenuClient
                     // Wait for the collision to be loaded around the entity in this new location.
                     while (!HasCollisionLoadedAroundEntity(Game.PlayerPed.Handle))
                     {
-                        // If this takes too long, then just abort, it's not worth waiting that long since we haven't found the real ground coord yet anyway.
+                        // 如果等待时间过长，终止等待循环，因为我们还没有找到真正的地面坐标。
                         if (GetGameTimer() - tempTimer > 1000)
                         {
-                            Log("Waiting for the collision is taking too long (more than 1s). Breaking from wait loop.");
+                            Log("等待碰撞加载时间过长（超过1秒）。中断等待循环。");
                             break;
                         }
                         await Delay(0);
                     }
 
-                    // Check for a ground z coord.
+                    // 检查地面 Z 坐标。
                     found = GetGroundZFor_3dCoord(pos.X, pos.Y, z, ref groundZ, false);
 
-                    // If we found a ground z coord, then teleport the player (or their vehicle) to that new location and break from the loop.
+                    // 如果找到了地面 Z 坐标，则将玩家（或他们的车辆）传送到新位置并退出循环。
                     if (found)
                     {
-                        Log($"Ground coordinate found: {groundZ}");
+                        Log($"找到的地面坐标：{groundZ}");
                         if (inVehicle())
                         {
                             SetEntityCoords(veh.Handle, pos.X, pos.Y, groundZ, false, false, false, true);
 
-                            // We need to unfreeze the vehicle because sometimes having it frozen doesn't place the vehicle on the ground properly.
+                            // 我们需要解冻车辆，因为有时冻结状态下车辆不会正确放置在地面上。
                             veh.IsPositionFrozen = false;
                             veh.PlaceOnGround();
-                            // Re-freeze until screen is faded in again.
+                            // 屏幕淡入后重新冻结。
                             veh.IsPositionFrozen = true;
                         }
                         else
@@ -657,8 +655,8 @@ namespace vMenuClient
                     GetNthClosestVehicleNode(pos.X, pos.Y, pos.Z, 0, ref safePos, 0, 0, 0);
 
                     // Notify the user that the ground z coord couldn't be found, so we will place them on a nearby road instead.
-                    Notify.Alert("Could not find a safe ground coord. Placing you on the nearest road instead.");
-                    Log("Could not find a safe ground coord. Placing you on the nearest road instead.");
+                    Notify.Alert("无法找到安全的地面坐标。将你放置在最近的道路上。");
+                    Log("无法找到安全的地面坐标。将你放置在最近的道路上。");
 
                     // Teleport vehicle, or player.
                     if (inVehicle())

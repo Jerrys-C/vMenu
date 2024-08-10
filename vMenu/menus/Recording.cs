@@ -10,25 +10,25 @@ namespace vMenuClient.menus
 {
     public class Recording
     {
-        // Variables
+        // 变量
         private Menu menu;
 
         private void CreateMenu()
         {
-            AddTextEntryByHash(0x86F10CE6, "Upload To Cfx.re Forum"); // Replace the "Upload To Social Club" button in gallery
-            AddTextEntry("ERROR_UPLOAD", "Are you sure you want to upload this photo to Cfx.re forum?"); // Replace the warning message text for uploading
+            AddTextEntryByHash(0x86F10CE6, "上传到 Cfx.re 论坛"); // 替换图库中的“上传到社交俱乐部”按钮
+            AddTextEntry("ERROR_UPLOAD", "您确定要将这张照片上传到 Cfx.re 论坛吗？"); // 替换上传警告消息文本
 
-            // Create the menu.
-            menu = new Menu("Recording", "Recording Options");
+            // 创建菜单。
+            menu = new Menu("录制", "录制选项");
 
-            var takePic = new MenuItem("Take Photo", "Takes a photo and saves it to the Pause Menu gallery.");
-            var openPmGallery = new MenuItem("Open Gallery", "Opens the Pause Menu gallery.");
-            var startRec = new MenuItem("Start Recording", "Start a new game recording using GTA V's built in recording.");
-            var stopRec = new MenuItem("Stop Recording", "Stop and save your current recording.");
-            var openEditor = new MenuItem("Rockstar Editor", "Open the rockstar editor, note you might want to quit the session first before doing this to prevent some issues.");
+            var takePic = new MenuItem("拍摄照片", "拍摄一张照片并保存到暂停菜单图库。");
+            var openPmGallery = new MenuItem("打开图库", "打开暂停菜单图库。");
+            var startRec = new MenuItem("开始录制", "使用 GTA V 内置录制功能开始新的游戏录制。");
+            var stopRec = new MenuItem("停止录制", "停止并保存当前的录制。");
+            var openEditor = new MenuItem("Rockstar 编辑器", "打开 Rockstar 编辑器，请注意您可能需要先退出会话以避免一些问题。");
 
-            menu.AddMenuItem(takePic);
-            menu.AddMenuItem(openPmGallery);
+            // menu.AddMenuItem(takePic);
+            // menu.AddMenuItem(openPmGallery);
             menu.AddMenuItem(startRec);
             menu.AddMenuItem(stopRec);
             menu.AddMenuItem(openEditor);
@@ -39,7 +39,7 @@ namespace vMenuClient.menus
                 {
                     if (IsRecording())
                     {
-                        Notify.Alert("You are already recording a clip, you need to stop recording first before you can start recording again!");
+                        Notify.Alert("您已经在录制剪辑，需要先停止录制才能重新开始录制！");
                     }
                     else
                     {
@@ -60,7 +60,7 @@ namespace vMenuClient.menus
                 {
                     if (!IsRecording())
                     {
-                        Notify.Alert("You are currently NOT recording a clip, you need to start recording first before you can stop and save a clip.");
+                        Notify.Alert("您当前没有录制剪辑，需要先开始录制才能停止并保存剪辑。");
                     }
                     else
                     {
@@ -74,23 +74,23 @@ namespace vMenuClient.menus
                         QuitSession();
                     }
                     ActivateRockstarEditor();
-                    // wait for the editor to be closed again.
+                    // 等待编辑器关闭。
                     while (IsPauseMenuActive())
                     {
                         await BaseScript.Delay(0);
                     }
-                    // then fade in the screen.
+                    // 然后屏幕渐显。
                     DoScreenFadeIn(1);
-                    Notify.Alert("You left your previous session before entering the Rockstar Editor. Restart the game to be able to rejoin the server's main session.", true, true);
+                    Notify.Alert("您在进入 Rockstar 编辑器之前已退出了当前会话。请重新启动游戏以重新加入服务器的主会话。", true, true);
                 }
             };
 
         }
 
         /// <summary>
-        /// Create the menu if it doesn't exist, and then returns it.
+        /// 如果菜单不存在，则创建菜单，然后返回它。
         /// </summary>
-        /// <returns>The Menu</returns>
+        /// <returns>菜单</returns>
         public Menu GetMenu()
         {
             if (menu == null)

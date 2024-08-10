@@ -20,14 +20,14 @@ namespace vMenuClient
 
         private readonly List<string> speeds = new()
         {
-            "Very Slow",
-            "Slow",
-            "Normal",
-            "Fast",
-            "Very Fast",
-            "Extremely Fast",
-            "Extremely Fast v2.0",
-            "Max Speed"
+            "龟速",
+            "慢",
+            "正常l",
+            "快",
+            "非常快",
+            "超级快",
+            "超超超快",
+            "最快"
         };
 
         public NoClip()

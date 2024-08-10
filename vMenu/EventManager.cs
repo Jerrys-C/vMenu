@@ -348,7 +348,7 @@ namespace vMenuClient
                     {
                         if (!vehicle.IsStopped)
                         {
-                            Notify.Alert("The owner of this vehicle is reclaiming their personal vehicle. You will be kicked from this vehicle in about 10 seconds. Stop the vehicle now to avoid taking damage.", false, true);
+                            Notify.Alert("这辆车的车主正在收回他们的私人车辆。大约10秒后，您将被踢出这辆车。立即停车，以免造成损坏。", false, true);
                         }
 
                         // Wait for the vehicle to come to a stop, or 10 seconds, whichever is faster.
@@ -368,7 +368,7 @@ namespace vMenuClient
                             // Make the ped jump out because the car isn't stopped yet.
                             if (!vehicle.IsStopped)
                             {
-                                Notify.Info("You were warned, now you'll have to suffer the consequences!");
+                                Notify.Info("你被警告过，现在你必须承受后果！");
                                 TaskLeaveVehicle(Game.PlayerPed.Handle, vehicle.Handle, 4160);
                             }
                             // Make the ped exit gently.

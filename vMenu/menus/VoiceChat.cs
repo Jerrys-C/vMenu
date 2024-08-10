@@ -12,7 +12,7 @@ namespace vMenuClient.menus
 {
     public class VoiceChat
     {
-        // Variables
+        // 变量
         private Menu menu;
         public bool EnableVoicechat = UserDefaults.VoiceChatEnabled;
         public bool ShowCurrentSpeaker = UserDefaults.ShowCurrentSpeaker;
@@ -20,23 +20,23 @@ namespace vMenuClient.menus
         public float currentProximity = (GetSettingsFloat(Setting.vmenu_override_voicechat_default_range) != 0.0) ? GetSettingsFloat(Setting.vmenu_override_voicechat_default_range) : UserDefaults.VoiceChatProximity;
         public List<string> channels = new()
         {
-            "Channel 1 (Default)",
-            "Channel 2",
-            "Channel 3",
-            "Channel 4",
+            "频道 1 (默认)",
+            "频道 2",
+            "频道 3",
+            "频道 4",
         };
         public string currentChannel;
         private readonly List<float> proximityRange = new()
         {
-            5f, // 5m
-            10f, // 10m
-            15f, // 15m
-            20f, // 20m
-            100f, // 100m
-            300f, // 300m
-            1000f, // 1.000km
-            2000f, // 2.000km
-            0f, // global
+            5f, // 5米
+            10f, // 10米
+            15f, // 15米
+            20f, // 20米
+            100f, // 100米
+            300f, // 300米
+            1000f, // 1.000公里
+            2000f, // 2.000公里
+            0f, // 全局
         };
 
 
@@ -45,36 +45,36 @@ namespace vMenuClient.menus
             currentChannel = channels[0];
             if (IsAllowed(Permission.VCStaffChannel))
             {
-                channels.Add("Staff Channel");
+                channels.Add("员工频道");
             }
 
-            // Create the menu.
-            menu = new Menu(Game.Player.Name, "Voice Chat Settings");
+            // 创建菜单
+            menu = new Menu(Game.Player.Name, "语音聊天设置");
 
-            var voiceChatEnabled = new MenuCheckboxItem("Enable Voice Chat", "Enable or disable voice chat.", EnableVoicechat);
-            var showCurrentSpeaker = new MenuCheckboxItem("Show Current Speaker", "Shows who is currently talking.", ShowCurrentSpeaker);
-            var showVoiceStatus = new MenuCheckboxItem("Show Microphone Status", "Shows whether your microphone is open or muted.", ShowVoiceStatus);
+            var voiceChatEnabled = new MenuCheckboxItem("启用语音聊天", "启用或禁用语音聊天。", EnableVoicechat);
+            var showCurrentSpeaker = new MenuCheckboxItem("显示当前发言者", "显示当前正在讲话的人。", ShowCurrentSpeaker);
+            var showVoiceStatus = new MenuCheckboxItem("显示麦克风状态", "显示您的麦克风是打开还是静音。", ShowVoiceStatus);
 
             var proximity = new List<string>()
             {
-                "5 m",
-                "10 m",
-                "15 m",
-                "20 m",
-                "100 m",
-                "300 m",
-                "1 km",
-                "2 km",
-                "Global",
+                "5 米",
+                "10 米",
+                "15 米",
+                "20 米",
+                "100 米",
+                "300 米",
+                "1 公里",
+                "2 公里",
+                "全局",
             };
-            var voiceChatProximity = new MenuItem("Voice Chat Proximity (" + ConvertToMetric(currentProximity) + ")", "Set the voice chat receiving proximity in meters. Set to 0 for global.");
-            var voiceChatChannel = new MenuListItem("Voice Chat Channel", channels, channels.IndexOf(currentChannel), "Set the voice chat channel.");
+            var voiceChatProximity = new MenuItem("语音聊天接收范围 (" + ConvertToMetric(currentProximity) + ")", "设置语音聊天接收范围（以米为单位）。设置为 0 以启用全局范围。");
+            var voiceChatChannel = new MenuListItem("语音聊天频道", channels, channels.IndexOf(currentChannel), "设置语音聊天频道。");
 
             if (IsAllowed(Permission.VCEnable))
             {
                 menu.AddMenuItem(voiceChatEnabled);
 
-                // Nested permissions because without voice chat enabled, you wouldn't be able to use these settings anyway.
+                // 嵌套权限，因为如果没有启用语音聊天，您将无法使用这些设置。
                 if (IsAllowed(Permission.VCShowSpeaker))
                 {
                     menu.AddMenuItem(showCurrentSpeaker);
@@ -106,20 +106,20 @@ namespace vMenuClient.menus
                 if (item == voiceChatChannel)
                 {
                     currentChannel = channels[newIndex];
-                    Subtitle.Custom($"New voice chat channel set to: ~b~{channels[newIndex]}~s~.");
+                    Subtitle.Custom($"新的语音聊天频道设置为: ~b~{channels[newIndex]}~s~.");
                 }
             };
             menu.OnItemSelect += async (sender, item, index) =>
             {
                 if (item == voiceChatProximity)
                 {
-                    var result = await GetUserInput(windowTitle: $"Enter Proximity In Meters. Current: ({ConvertToMetric(currentProximity)})", maxInputLength: 6);
+                    var result = await GetUserInput(windowTitle: $"输入接收范围（米）。当前: ({ConvertToMetric(currentProximity)})", maxInputLength: 6);
 
                     if (float.TryParse(result, out var resultfloat))
                     {
                         currentProximity = resultfloat;
-                        Subtitle.Custom($"New voice chat proximity set to: ~b~{ConvertToMetric(currentProximity)}~s~.");
-                        voiceChatProximity.Text = ("Voice Chat Proximity (" + ConvertToMetric(currentProximity) + ")");
+                        Subtitle.Custom($"新的语音聊天接收范围设置为: ~b~{ConvertToMetric(currentProximity)}~s~.");
+                        voiceChatProximity.Text = ("语音聊天接收范围 (" + ConvertToMetric(currentProximity) + ")");
                     }
                 }
             };
@@ -145,14 +145,14 @@ namespace vMenuClient.menus
             }
             if (input == 0)
             {
-                val = "global";
+                val = "全局";
             }
             return val;
         }
         /// <summary>
-        /// Create the menu if it doesn't exist, and then returns it.
+        /// 如果菜单不存在，则创建菜单，然后返回它。
         /// </summary>
-        /// <returns>The Menu</returns>
+        /// <returns>菜单</returns>
         public Menu GetMenu()
         {
             if (menu == null)

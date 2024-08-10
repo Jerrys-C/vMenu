@@ -10,23 +10,23 @@ namespace vMenuClient.menus
         private void CreateMenu()
         {
             // Create the menu.
-            menu = new Menu("vMenu", "About vMenu");
+            menu = new Menu("vMenu", "关于 vMenu和服务器");
 
             // Create menu items.
-            var version = new MenuItem("vMenu Version", $"This server is using vMenu ~b~~h~{MainMenu.Version}~h~~s~.")
+            var version = new MenuItem("vMenu 版本", $" ~b~SASDOJ~s~ 正在使用 vMenu ~b~~h~{MainMenu.Version}~h~~s~.")
             {
                 Label = $"~h~{MainMenu.Version}~h~"
             };
-            var credits = new MenuItem("About vMenu / Credits", "vMenu is made by ~b~Vespura~s~. For more info, checkout ~b~www.vespura.com/vmenu~s~. Thank you to: Deltanic, Brigliar, IllusiveTea, Shayan Doust, zr0iq and Golden for your contributions!");
+            var credits = new MenuItem("关于 vMenu / 鸣谢", "vMenu 由 ~b~Vespura~s~ 制作。更多信息请访问 ~b~www.vespura.com/vmenu~s~。");
 
             var serverInfoMessage = vMenuShared.ConfigManager.GetSettingsString(vMenuShared.ConfigManager.Setting.vmenu_server_info_message);
             if (!string.IsNullOrEmpty(serverInfoMessage))
             {
-                var serverInfo = new MenuItem("Server Info", serverInfoMessage);
+                var serverInfo = new MenuItem("服务器信息", "WIKI：wiki.sasdoj.com\nCAD：cad.sasdoj.com\nTS：ts.sasdoj.com\nFivem: fivem.sasdoj.com\nDiscord：discord.gg/4HWq5mhp2w");
                 var siteUrl = vMenuShared.ConfigManager.GetSettingsString(vMenuShared.ConfigManager.Setting.vmenu_server_info_website_url);
                 if (!string.IsNullOrEmpty(siteUrl))
                 {
-                    serverInfo.Label = $"{siteUrl}";
+                    serverInfo.Label = $"SASDOJ";
                 }
                 menu.AddMenuItem(serverInfo);
             }

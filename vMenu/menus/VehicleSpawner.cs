@@ -15,7 +15,7 @@ namespace vMenuClient.menus
 {
     public class VehicleSpawner
     {
-        // Variables
+        // 变量
         private Menu menu;
         public static Dictionary<string, uint> AddonVehicles;
 
@@ -25,16 +25,16 @@ namespace vMenuClient.menus
 
         private void CreateMenu()
         {
-            #region initial setup.
-            // Create the menu.
-            menu = new Menu(Game.Player.Name, "Vehicle Spawner");
+            #region 初始设置
+            // 创建菜单
+            menu = new Menu(Game.Player.Name, "车辆生成器");
 
-            // Create the buttons and checkboxes.
-            var spawnByName = new MenuItem("Spawn Vehicle By Model Name", "Enter the name of a vehicle to spawn.");
-            var spawnInVeh = new MenuCheckboxItem("Spawn Inside Vehicle", "This will teleport you into the vehicle when you spawn it.", SpawnInVehicle);
-            var replacePrev = new MenuCheckboxItem("Replace Previous Vehicle", "This will automatically delete your previously spawned vehicle when you spawn a new vehicle.", ReplaceVehicle);
+            // 创建按钮和复选框
+            var spawnByName = new MenuItem("按模型名称生成车辆", "输入一个车辆名称以生成。");
+            var spawnInVeh = new MenuCheckboxItem("生成车辆时进入车内", "这将在生成车辆时将您传送到车内。", SpawnInVehicle);
+            var replacePrev = new MenuCheckboxItem("替换之前的车辆", "这将在生成新车辆时自动删除您之前生成的车辆。", ReplaceVehicle);
 
-            // Add the items to the menu.
+            // 将项添加到菜单中
             if (IsAllowed(Permission.VSSpawnByName))
             {
                 menu.AddMenuItem(spawnByName);
@@ -43,10 +43,10 @@ namespace vMenuClient.menus
             menu.AddMenuItem(replacePrev);
             #endregion
 
-            #region addon cars menu
-            // Vehicle Addons List
-            var addonCarsMenu = new Menu("Addon Vehicles", "Spawn An Addon Vehicle");
-            var addonCarsBtn = new MenuItem("Addon Vehicles", "A list of addon vehicles available on this server.") { Label = "→→→" };
+            #region 附加车辆菜单
+            // 附加车辆列表
+            var addonCarsMenu = new Menu("附加车辆", "生成附加车辆");
+            var addonCarsBtn = new MenuItem("附加车辆", "此服务器上可用的附加车辆列表。") { Label = "→→→" };
 
             menu.AddMenuItem(addonCarsBtn);
 
@@ -58,27 +58,27 @@ namespace vMenuClient.menus
                     {
                         MenuController.BindMenuItem(menu, addonCarsMenu, addonCarsBtn);
                         MenuController.AddSubmenu(menu, addonCarsMenu);
-                        var unavailableCars = new Menu("Addon Spawner", "Unavailable Vehicles");
-                        var unavailableCarsBtn = new MenuItem("Unavailable Vehicles", "These addon vehicles are not currently being streamed (correctly) and are not able to be spawned.") { Label = "→→→" };
+                        var unavailableCars = new Menu("附加生成器", "不可用的车辆");
+                        var unavailableCarsBtn = new MenuItem("不可用的车辆", "这些附加车辆当前无法生成，因为它们没有被正确地加载。") { Label = "→→→" };
                         MenuController.AddSubmenu(addonCarsMenu, unavailableCars);
 
                         for (var cat = 0; cat < 23; cat++)
                         {
-                            var categoryMenu = new Menu("Addon Spawner", GetLabelText($"VEH_CLASS_{cat}"));
-                            var categoryBtn = new MenuItem(GetLabelText($"VEH_CLASS_{cat}"), $"Spawn an addon vehicle from the {GetLabelText($"VEH_CLASS_{cat}")} class.") { Label = "→→→" };
+                            var categoryMenu = new Menu("附加生成器", GetLabelText($"VEH_CLASS_{cat}"));
+                            var categoryBtn = new MenuItem(GetLabelText($"VEH_CLASS_{cat}"), $"从 {GetLabelText($"VEH_CLASS_{cat}")} 类中生成附加车辆。") { Label = "→→→" };
 
                             addonCarsMenu.AddMenuItem(categoryBtn);
 
                             if (!allowedCategories[cat])
                             {
-                                categoryBtn.Description = "This vehicle class is disabled by the server.";
+                                categoryBtn.Description = "此车辆类别已被服务器禁用。";
                                 categoryBtn.Enabled = false;
                                 categoryBtn.LeftIcon = MenuItem.Icon.LOCK;
                                 categoryBtn.Label = "";
                                 continue;
                             }
 
-                            // Loop through all addon vehicles in this class.
+                            // 遍历此类别中的所有附加车辆
                             foreach (var veh in AddonVehicles.Where(v => GetVehicleClassFromName(v.Value) == cat))
                             {
                                 var localizedName = GetLabelText(GetDisplayNameFromVehicleModel(veh.Value));
@@ -86,13 +86,13 @@ namespace vMenuClient.menus
                                 var name = localizedName != "NULL" ? localizedName : GetDisplayNameFromVehicleModel(veh.Value);
                                 name = name != "CARNOTFOUND" ? name : veh.Key;
 
-                                var carBtn = new MenuItem(name, $"Click to spawn {name}.")
+                                var carBtn = new MenuItem(name, $"点击生成 {name}.")
                                 {
                                     Label = $"({veh.Key})",
-                                    ItemData = veh.Key // store the model name in the button data.
+                                    ItemData = veh.Key // 将模型名称存储在按钮数据中。
                                 };
 
-                                // This should be impossible to be false, but we check it anyway.
+                                // 这应该是不可能为假，但我们还是检查一下。
                                 if (IsModelInCdimage(veh.Value))
                                 {
                                     categoryMenu.AddMenuItem(carBtn);
@@ -100,7 +100,7 @@ namespace vMenuClient.menus
                                 else
                                 {
                                     carBtn.Enabled = false;
-                                    carBtn.Description = "This vehicle is not available. Please ask the server owner to check if the vehicle is being streamed correctly.";
+                                    carBtn.Description = "此车辆不可用。请询问服务器所有者检查车辆是否正确加载。";
                                     carBtn.LeftIcon = MenuItem.Icon.LOCK;
                                     unavailableCars.AddMenuItem(carBtn);
                                 }
@@ -119,7 +119,7 @@ namespace vMenuClient.menus
                             }
                             else
                             {
-                                categoryBtn.Description = "There are no addon cars available in this category.";
+                                categoryBtn.Description = "此类别中没有附加车辆。";
                                 categoryBtn.Enabled = false;
                                 categoryBtn.LeftIcon = MenuItem.Icon.LOCK;
                                 categoryBtn.Label = "";
@@ -136,25 +136,25 @@ namespace vMenuClient.menus
                     {
                         addonCarsBtn.Enabled = false;
                         addonCarsBtn.LeftIcon = MenuItem.Icon.LOCK;
-                        addonCarsBtn.Description = "There are no addon vehicles available on this server.";
+                        addonCarsBtn.Description = "此服务器上没有可用的附加车辆。";
                     }
                 }
                 else
                 {
                     addonCarsBtn.Enabled = false;
                     addonCarsBtn.LeftIcon = MenuItem.Icon.LOCK;
-                    addonCarsBtn.Description = "The list containing all addon cars could not be loaded, is it configured properly?";
+                    addonCarsBtn.Description = "包含所有附加车辆的列表无法加载，请检查是否配置正确。";
                 }
             }
             else
             {
                 addonCarsBtn.Enabled = false;
                 addonCarsBtn.LeftIcon = MenuItem.Icon.LOCK;
-                addonCarsBtn.Description = "Access to this list has been restricted by the server owner.";
+                addonCarsBtn.Description = "服务器所有者已限制访问此列表。";
             }
             #endregion
 
-            // These are the max speed, acceleration, braking and traction values per vehicle class.
+            // 这些是每个车辆类别的最大速度、加速度、刹车和牵引力值。
             var speedValues = new float[23]
             {
                 44.9374657f,
@@ -260,20 +260,20 @@ namespace vMenuClient.menus
                 3.2925f
             };
 
-            #region vehicle classes submenus
-            // Loop through all the vehicle classes.
+            #region 车辆类别子菜单
+            // 遍历所有车辆类别
             for (var vehClass = 0; vehClass < 23; vehClass++)
             {
-                // Get the class name.
+                // 获取类别名称
                 var className = GetLabelText($"VEH_CLASS_{vehClass}");
 
-                // Create a button & a menu for it, add the menu to the menu pool and add & bind the button to the menu.
-                var btn = new MenuItem(className, $"Spawn a vehicle from the ~o~{className} ~s~class.")
+                // 创建一个按钮和一个菜单，将菜单添加到菜单池中，并将按钮绑定到菜单
+                var btn = new MenuItem(className, $"从 ~o~{className} ~s~类别中生成一辆车。")
                 {
                     Label = "→→→"
                 };
 
-                var vehicleClassMenu = new Menu("Vehicle Spawner", className);
+                var vehicleClassMenu = new Menu("车辆生成器", className);
 
                 MenuController.AddSubmenu(menu, vehicleClassMenu);
                 menu.AddMenuItem(btn);
@@ -285,21 +285,21 @@ namespace vMenuClient.menus
                 else
                 {
                     btn.LeftIcon = MenuItem.Icon.LOCK;
-                    btn.Description = "This category has been disabled by the server owner.";
+                    btn.Description = "此类别已被服务器所有者禁用。";
                     btn.Enabled = false;
                 }
 
-                // Create a dictionary for the duplicate vehicle names (in this vehicle class).
+                // 为重复的车辆名称（在此车辆类别中）创建一个字典
                 var duplicateVehNames = new Dictionary<string, int>();
 
-                #region Add vehicles per class
-                // Loop through all the vehicles in the vehicle class.
+                #region 为类别添加车辆
+                // 遍历车辆类别中的所有车辆
                 foreach (var veh in VehicleData.Vehicles.VehicleClasses[className])
                 {
-                    // Convert the model name to start with a Capital letter, converting the other characters to lowercase. 
+                    // 将模型名称转换为首字母大写，其余字符小写。
                     var properCasedModelName = veh[0].ToString().ToUpper() + veh.ToLower().Substring(1);
 
-                    // Get the localized vehicle name, if it's "NULL" (no label found) then use the "properCasedModelName" created above.
+                    // 获取本地化的车辆名称，如果为 "NULL"（未找到标签），则使用上面创建的 "properCasedModelName"
                     var vehName = GetVehDisplayNameFromModel(veh) != "NULL" ? GetVehDisplayNameFromModel(veh) : properCasedModelName;
                     var vehModelName = veh;
                     var model = (uint)GetHashKey(vehModelName);
@@ -309,31 +309,31 @@ namespace vMenuClient.menus
                     var maxBraking = Map(GetVehicleModelMaxBraking(model), 0f, brakingValues[vehClass], 0f, 1f);
                     var maxTraction = Map(GetVehicleModelMaxTraction(model), 0f, tractionValues[vehClass], 0f, 1f);
 
-                    // Loop through all the menu items and check each item's title/text and see if it matches the current vehicle (display) name.
+                    // 遍历所有菜单项，检查每个项的标题/文本是否与当前车辆（显示）名称匹配
                     var duplicate = false;
                     for (var itemIndex = 0; itemIndex < vehicleClassMenu.Size; itemIndex++)
                     {
-                        // If it matches...
+                        // 如果匹配...
                         if (vehicleClassMenu.GetMenuItems()[itemIndex].Text.ToString() == vehName)
                         {
 
-                            // Check if the model was marked as duplicate before.
+                            // 检查模型是否之前已标记为重复
                             if (duplicateVehNames.Keys.Contains(vehName))
                             {
-                                // If so, add 1 to the duplicate counter for this model name.
+                                // 如果是，则将此模型名称的重复计数器加 1
                                 duplicateVehNames[vehName]++;
                             }
 
-                            // If this is the first duplicate, then set it to 2.
+                            // 如果这是第一个重复，则将其设置为 2
                             else
                             {
                                 duplicateVehNames[vehName] = 2;
                             }
 
-                            // The model name is a duplicate, so get the modelname and add the duplicate amount for this model name to the end of the vehicle name.
+                            // 模型名称是重复的，所以获取模型名称并将重复数量添加到车辆名称的末尾
                             vehName += $" ({duplicateVehNames[vehName]})";
 
-                            // Then create and add a new button for this vehicle.
+                            // 然后创建并添加一个新按钮
 
                             if (DoesModelExist(veh))
                             {
@@ -347,7 +347,7 @@ namespace vMenuClient.menus
                             }
                             else
                             {
-                                var vehBtn = new MenuItem(vehName, "This vehicle is not available because the model could not be found in your game files. If this is a DLC vehicle, make sure the server is streaming it.")
+                                var vehBtn = new MenuItem(vehName, "由于无法在游戏文件中找到模型，此车辆不可用。如果这是一个 DLC 车辆，请确保服务器正在加载它。")
                                 {
                                     Enabled = false,
                                     Label = $"({vehModelName.ToLower()})",
@@ -357,13 +357,13 @@ namespace vMenuClient.menus
                                 vehBtn.RightIcon = MenuItem.Icon.LOCK;
                             }
 
-                            // Mark duplicate as true and break from the loop because we already found the duplicate.
+                            // 将重复标记为 true 并退出循环，因为我们已经找到了重复项
                             duplicate = true;
                             break;
                         }
                     }
 
-                    // If it's not a duplicate, add the model name.
+                    // 如果不是重复项，则添加模型名称
                     if (!duplicate)
                     {
                         if (DoesModelExist(veh))
@@ -378,7 +378,7 @@ namespace vMenuClient.menus
                         }
                         else
                         {
-                            var vehBtn = new MenuItem(vehName, "This vehicle is not available because the model could not be found in your game files. If this is a DLC vehicle, make sure the server is streaming it.")
+                            var vehBtn = new MenuItem(vehName, "由于无法在游戏文件中找到模型，此车辆不可用。如果这是一个 DLC 车辆，请确保服务器正在加载它。")
                             {
                                 Enabled = false,
                                 Label = $"({vehModelName.ToLower()})",
@@ -393,7 +393,7 @@ namespace vMenuClient.menus
 
                 vehicleClassMenu.ShowVehicleStatsPanel = true;
 
-                // Handle button presses
+                // 处理按钮按下事件
                 vehicleClassMenu.OnItemSelect += async (sender2, item2, index2) =>
                 {
                     await SpawnVehicle(VehicleData.Vehicles.VehicleClasses[className][index2], SpawnInVehicle, ReplaceVehicle);
@@ -428,18 +428,18 @@ namespace vMenuClient.menus
             }
             #endregion
 
-            #region handle events
-            // Handle button presses.
+            #region 处理事件
+            // 处理按钮按下事件
             menu.OnItemSelect += async (sender, item, index) =>
             {
                 if (item == spawnByName)
                 {
-                    // Passing "custom" as the vehicle name, will ask the user for input.
+                    // 传递 "custom" 作为车辆名称，将要求用户输入
                     await SpawnVehicle("custom", SpawnInVehicle, ReplaceVehicle);
                 }
             };
 
-            // Handle checkbox changes.
+            // 处理复选框更改
             menu.OnCheckboxChange += (sender, item, index, _checked) =>
             {
                 if (item == spawnInVeh)
@@ -455,9 +455,9 @@ namespace vMenuClient.menus
         }
 
         /// <summary>
-        /// Create the menu if it doesn't exist, and then returns it.
+        /// 如果菜单不存在，则创建菜单，然后返回它。
         /// </summary>
-        /// <returns>The Menu</returns>
+        /// <returns>菜单</returns>
         public Menu GetMenu()
         {
             if (menu == null)

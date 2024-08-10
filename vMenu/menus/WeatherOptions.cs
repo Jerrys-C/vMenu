@@ -13,7 +13,7 @@ namespace vMenuClient.menus
 {
     public class WeatherOptions
     {
-        // Variables
+        // 变量
         private Menu menu;
         public MenuCheckboxItem dynamicWeatherEnabled;
         public MenuCheckboxItem blackout;
@@ -39,29 +39,29 @@ namespace vMenuClient.menus
 
         private void CreateMenu()
         {
-            // Create the menu.
-            menu = new Menu(Game.Player.Name, "Weather Options");
+            // 创建菜单
+            menu = new Menu(Game.Player.Name, "天气选项");
 
-            dynamicWeatherEnabled = new MenuCheckboxItem("Toggle Dynamic Weather", "Enable or disable dynamic weather changes.", EventManager.DynamicWeatherEnabled);
-            blackout = new MenuCheckboxItem("Toggle Blackout", "This disables or enables all lights across the map.", EventManager.IsBlackoutEnabled);
-            snowEnabled = new MenuCheckboxItem("Enable Snow Effects", "This will force snow to appear on the ground and enable snow particle effects for peds and vehicles. Combine with X-MAS or Light Snow weather for best results.", ConfigManager.GetSettingsBool(ConfigManager.Setting.vmenu_enable_snow));
-            var extrasunny = new MenuItem("Extra Sunny", "Set the weather to ~y~extra sunny~s~!") { ItemData = "EXTRASUNNY" };
-            var clear = new MenuItem("Clear", "Set the weather to ~y~clear~s~!") { ItemData = "CLEAR" };
-            var neutral = new MenuItem("Neutral", "Set the weather to ~y~neutral~s~!") { ItemData = "NEUTRAL" };
-            var smog = new MenuItem("Smog", "Set the weather to ~y~smog~s~!") { ItemData = "SMOG" };
-            var foggy = new MenuItem("Foggy", "Set the weather to ~y~foggy~s~!") { ItemData = "FOGGY" };
-            var clouds = new MenuItem("Cloudy", "Set the weather to ~y~clouds~s~!") { ItemData = "CLOUDS" };
-            var overcast = new MenuItem("Overcast", "Set the weather to ~y~overcast~s~!") { ItemData = "OVERCAST" };
-            var clearing = new MenuItem("Clearing", "Set the weather to ~y~clearing~s~!") { ItemData = "CLEARING" };
-            var rain = new MenuItem("Rainy", "Set the weather to ~y~rain~s~!") { ItemData = "RAIN" };
-            var thunder = new MenuItem("Thunder", "Set the weather to ~y~thunder~s~!") { ItemData = "THUNDER" };
-            var blizzard = new MenuItem("Blizzard", "Set the weather to ~y~blizzard~s~!") { ItemData = "BLIZZARD" };
-            var snow = new MenuItem("Snow", "Set the weather to ~y~snow~s~!") { ItemData = "SNOW" };
-            var snowlight = new MenuItem("Light Snow", "Set the weather to ~y~light snow~s~!") { ItemData = "SNOWLIGHT" };
-            var xmas = new MenuItem("X-MAS Snow", "Set the weather to ~y~x-mas~s~!") { ItemData = "XMAS" };
-            var halloween = new MenuItem("Halloween", "Set the weather to ~y~halloween~s~!") { ItemData = "HALLOWEEN" };
-            var removeclouds = new MenuItem("Remove All Clouds", "Remove all clouds from the sky!");
-            var randomizeclouds = new MenuItem("Randomize Clouds", "Add random clouds to the sky!");
+            dynamicWeatherEnabled = new MenuCheckboxItem("切换动态天气", "启用或禁用动态天气变化。", EventManager.DynamicWeatherEnabled);
+            blackout = new MenuCheckboxItem("切换停电", "这会禁用或启用地图上的所有灯光。", EventManager.IsBlackoutEnabled);
+            snowEnabled = new MenuCheckboxItem("启用雪效", "这会强制地面出现雪，并为行人和车辆启用雪粒子效果。与X-MAS或轻雪天气配合使用效果最佳。", ConfigManager.GetSettingsBool(ConfigManager.Setting.vmenu_enable_snow));
+            var extrasunny = new MenuItem("极其晴朗", "将天气设置为~y~极其晴朗~s~！") { ItemData = "EXTRASUNNY" };
+            var clear = new MenuItem("晴朗", "将天气设置为~y~晴朗~s~！") { ItemData = "CLEAR" };
+            var neutral = new MenuItem("中性", "将天气设置为~y~中性~s~！") { ItemData = "NEUTRAL" };
+            var smog = new MenuItem("雾霾", "将天气设置为~y~雾霾~s~！") { ItemData = "SMOG" };
+            var foggy = new MenuItem("多雾", "将天气设置为~y~多雾~s~！") { ItemData = "FOGGY" };
+            var clouds = new MenuItem("多云", "将天气设置为~y~多云~s~！") { ItemData = "CLOUDS" };
+            var overcast = new MenuItem("阴天", "将天气设置为~y~阴天~s~！") { ItemData = "OVERCAST" };
+            var clearing = new MenuItem("放晴", "将天气设置为~y~放晴~s~！") { ItemData = "CLEARING" };
+            var rain = new MenuItem("下雨", "将天气设置为~y~下雨~s~！") { ItemData = "RAIN" };
+            var thunder = new MenuItem("雷暴", "将天气设置为~y~雷暴~s~！") { ItemData = "THUNDER" };
+            var blizzard = new MenuItem("暴风雪", "将天气设置为~y~暴风雪~s~！") { ItemData = "BLIZZARD" };
+            var snow = new MenuItem("雪", "将天气设置为~y~雪~s~！") { ItemData = "SNOW" };
+            var snowlight = new MenuItem("轻雪", "将天气设置为~y~轻雪~s~！") { ItemData = "SNOWLIGHT" };
+            var xmas = new MenuItem("圣诞雪", "将天气设置为~y~圣诞~s~！") { ItemData = "XMAS" };
+            var halloween = new MenuItem("万圣节", "将天气设置为~y~万圣节~s~！") { ItemData = "HALLOWEEN" };
+            var removeclouds = new MenuItem("移除所有云层", "移除天空中的所有云层！");
+            var randomizeclouds = new MenuItem("随机云层", "向天空中添加随机云层！");
 
             if (IsAllowed(Permission.WODynamic))
             {
@@ -112,7 +112,7 @@ namespace vMenuClient.menus
                 }
                 else if (item.ItemData is string weatherType)
                 {
-                    Notify.Custom($"The weather will be changed to ~y~{item.Text}~s~. This will take {EventManager.WeatherChangeTime} seconds.");
+                    Notify.Custom($"天气将被更改为~y~{item.Text}~s~。这将需要{EventManager.WeatherChangeTime}秒。");
                     UpdateServerWeather(weatherType, EventManager.IsBlackoutEnabled, EventManager.DynamicWeatherEnabled, EventManager.IsSnowEnabled);
                 }
             };
@@ -121,28 +121,26 @@ namespace vMenuClient.menus
             {
                 if (item == dynamicWeatherEnabled)
                 {
-                    Notify.Custom($"Dynamic weather changes are now {(_checked ? "~g~enabled" : "~r~disabled")}~s~.");
+                    Notify.Custom($"动态天气变化现在{(_checked ? "~g~启用" : "~r~禁用")}~s~。");
                     UpdateServerWeather(EventManager.GetServerWeather, EventManager.IsBlackoutEnabled, _checked, EventManager.IsSnowEnabled);
                 }
                 else if (item == blackout)
                 {
-                    Notify.Custom($"Blackout mode is now {(_checked ? "~g~enabled" : "~r~disabled")}~s~.");
+                    Notify.Custom($"停电模式现在{(_checked ? "~g~启用" : "~r~禁用")}~s~。");
                     UpdateServerWeather(EventManager.GetServerWeather, _checked, EventManager.DynamicWeatherEnabled, EventManager.IsSnowEnabled);
                 }
                 else if (item == snowEnabled)
                 {
-                    Notify.Custom($"Snow effects will now be forced {(_checked ? "~g~enabled" : "~r~disabled")}~s~.");
+                    Notify.Custom($"雪效现在强制{(_checked ? "~g~启用" : "~r~禁用")}~s~。");
                     UpdateServerWeather(EventManager.GetServerWeather, EventManager.IsBlackoutEnabled, EventManager.DynamicWeatherEnabled, _checked);
                 }
             };
         }
 
-
-
         /// <summary>
-        /// Create the menu if it doesn't exist, and then returns it.
+        /// 如果菜单不存在，则创建菜单，然后返回菜单。
         /// </summary>
-        /// <returns>The Menu</returns>
+        /// <returns>菜单</returns>
         public Menu GetMenu()
         {
             if (menu == null)

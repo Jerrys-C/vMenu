@@ -47,21 +47,21 @@ namespace vMenuClient
             var placeholder = placeholderValue != null ? " " + placeholderValue : "";
             outputMessage = errorType switch
             {
-                CommonErrors.NeedToBeTheDriver => "You need to be the driver of this vehicle.",
-                CommonErrors.NoVehicle => $"You need to be inside a vehicle{placeholder}.",
-                CommonErrors.NotAllowed => $"You are not allowed to{placeholder}, sorry.",
-                CommonErrors.InvalidModel => $"This model~r~{placeholder} ~s~could not be found, are you sure it's valid?",
-                CommonErrors.InvalidInput => $"The input~r~{placeholder} ~s~is invalid or you cancelled the action, please try again.",
-                CommonErrors.InvalidSaveName => $"Saving failed because the provided save name~r~{placeholder} ~s~is invalid.",
-                CommonErrors.SaveNameAlreadyExists => $"Saving failed because the provided save name~r~{placeholder} ~s~already exists.",
-                CommonErrors.CouldNotLoadSave => $"Loading of~r~{placeholder} ~s~failed! Is the saves file corrupt?",
-                CommonErrors.CouldNotLoad => $"Could not load~r~{placeholder}~s~, sorry!",
-                CommonErrors.PedNotFound => $"The specified ped could not be found.{placeholder}",
-                CommonErrors.PlayerNotFound => $"The specified player could not be found.{placeholder}",
-                CommonErrors.WalkingStyleNotForMale => $"This walking style is not available for male peds.{placeholder}",
-                CommonErrors.WalkingStyleNotForFemale => $"This walking style is not available for female peds.{placeholder}",
-                CommonErrors.RightAlignedNotSupported => $"Right aligned menus are not supported for ultra wide aspect ratios.{placeholder}",
-                _ => $"An unknown error occurred, sorry!{placeholder}",
+                CommonErrors.NeedToBeTheDriver => "您需要是这辆车的驾驶员。",
+                CommonErrors.NoVehicle => $"您需要在车内{placeholder}。",
+                CommonErrors.NotAllowed => $"您不被允许{placeholder}，抱歉。",
+                CommonErrors.InvalidModel => $"这个模型~r~{placeholder} ~s~找不到，您确定它有效吗？",
+                CommonErrors.InvalidInput => $"输入~r~{placeholder} ~s~无效或您取消了操作，请重试。",
+                CommonErrors.InvalidSaveName => $"保存失败，因为提供的保存名称~r~{placeholder} ~s~无效。",
+                CommonErrors.SaveNameAlreadyExists => $"保存失败，因为提供的保存名称~r~{placeholder} ~s~已存在。",
+                CommonErrors.CouldNotLoadSave => $"加载~r~{placeholder} ~s~失败！保存文件是否已损坏？",
+                CommonErrors.CouldNotLoad => $"无法加载~r~{placeholder}~s~，抱歉！",
+                CommonErrors.PedNotFound => $"找不到指定的行人。{placeholder}",
+                CommonErrors.PlayerNotFound => $"找不到指定的玩家。{placeholder}",
+                CommonErrors.WalkingStyleNotForMale => $"这种步态风格不适用于男性行人。{placeholder}",
+                CommonErrors.WalkingStyleNotForFemale => $"这种步态风格不适用于女性行人。{placeholder}",
+                CommonErrors.RightAlignedNotSupported => $"超宽屏幕比例不支持右对齐菜单。{placeholder}",
+                _ => $"发生未知错误，抱歉！{placeholder}",
             };
             return outputMessage;
         }

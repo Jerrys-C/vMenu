@@ -21,25 +21,24 @@ namespace vMenuClient.menus
     {
         // Variables
         private Menu menu;
-        public Menu createCharacterMenu = new("Create Character", "Create A New Character");
-        public Menu savedCharactersMenu = new("vMenu", "Manage Saved Characters");
-        public Menu savedCharactersCategoryMenu = new("Category", "I get updated at runtime!");
-        public Menu inheritanceMenu = new("vMenu", "Character Inheritance Options");
-        public Menu appearanceMenu = new("vMenu", "Character Appearance Options");
-        public Menu faceShapeMenu = new("vMenu", "Character Face Shape Options");
-        public Menu tattoosMenu = new("vMenu", "Character Tattoo Options");
-        public Menu clothesMenu = new("vMenu", "Character Clothing Options");
-        public Menu propsMenu = new("vMenu", "Character Props Options");
-        private readonly Menu manageSavedCharacterMenu = new("vMenu", "Manage MP Character");
+    public Menu createCharacterMenu = new("创建角色", "创建一个新角色");
+    public Menu savedCharactersMenu = new("vMenu", "管理已保存的角色");
+    public Menu savedCharactersCategoryMenu = new("分类", "我在运行时更新！");
+    public Menu inheritanceMenu = new("vMenu", "角色继承选项");
+    public Menu appearanceMenu = new("vMenu", "角色外观选项");
+    public Menu faceShapeMenu = new("vMenu", "角色面部形状选项");
+    public Menu tattoosMenu = new("vMenu", "角色纹身选项");
+    public Menu clothesMenu = new("vMenu", "角色服装选项");
+    public Menu propsMenu = new("vMenu", "角色道具选项");
+    private readonly Menu manageSavedCharacterMenu = new("vMenu", "管理MP角色");
 
         // Need to be able to disable/enable these buttons from another class.
-        internal MenuItem createMaleBtn = new("Create Male Character", "Create a new male character.") { Label = "→→→" };
-        internal MenuItem createFemaleBtn = new("Create Female Character", "Create a new female character.") { Label = "→→→" };
-        internal MenuItem editPedBtn = new("Edit Saved Character", "This allows you to edit everything about your saved character. The changes will be saved to this character's save file entry once you hit the save button.");
-
+        internal MenuItem createMaleBtn = new("创建男性角色", "创建一个新的男性角色。") { Label = "→→→" };
+        internal MenuItem createFemaleBtn = new("创建女性角色", "创建一个新的女性角色。") { Label = "→→→" };
+        internal MenuItem editPedBtn = new("编辑已保存的角色", "这允许你编辑已保存角色的所有内容。保存按钮被按下后，变化将保存到该角色的保存文件条目中。");
         // Need to be editable from other functions
-        private readonly MenuListItem setCategoryBtn = new("Set Character Category", new List<string> { }, 0, "Sets this character's category. Select to save.");
-        private readonly MenuListItem categoryBtn = new("Character Category", new List<string> { }, 0, "Sets this character's category.");
+       private readonly MenuListItem setCategoryBtn = new("设置角色分类", new List<string> { }, 0, "设置此角色的分类。选择以保存。");
+    private readonly MenuListItem categoryBtn = new("角色分类", new List<string> { }, 0, "设置此角色的分类。");
 
         public static bool DontCloseMenus { get { return MenuController.PreventExitingMenu; } set { MenuController.PreventExitingMenu = value; } }
         public static bool DisableBackButton { get { return MenuController.DisableBackButton; } set { MenuController.DisableBackButton = value; } }
@@ -105,7 +104,7 @@ namespace vMenuClient.menus
             var overlayColorsList = new List<string>();
             for (var i = 0; i < GetNumHairColors(); i++)
             {
-                overlayColorsList.Add($"Color #{i + 1}");
+                overlayColorsList.Add($"颜色 #{i + 1}");
             }
 
             var maxHairStyles = GetNumberOfPedDrawableVariations(Game.PlayerPed.Handle, 2);
@@ -114,88 +113,88 @@ namespace vMenuClient.menus
             //    maxHairStyles /= 2;
             //}
             var hairStylesList = new List<string>();
-            for (var i = 0; i < maxHairStyles; i++)
+             for (var i = 0; i < maxHairStyles; i++)
             {
-                hairStylesList.Add($"Style #{i + 1}");
+                hairStylesList.Add($"发型 #{i + 1}");
             }
-            hairStylesList.Add($"Style #{maxHairStyles + 1}");
+            hairStylesList.Add($"发型 #{maxHairStyles + 1}");
 
             var blemishesStyleList = new List<string>();
             for (var i = 0; i < GetNumHeadOverlayValues(0); i++)
             {
-                blemishesStyleList.Add($"Style #{i + 1}");
+                blemishesStyleList.Add($"风格 #{i + 1}");
             }
 
             var beardStylesList = new List<string>();
             for (var i = 0; i < GetNumHeadOverlayValues(1); i++)
             {
-                beardStylesList.Add($"Style #{i + 1}");
+                beardStylesList.Add($"风格 #{i + 1}");
             }
 
             var eyebrowsStyleList = new List<string>();
             for (var i = 0; i < GetNumHeadOverlayValues(2); i++)
             {
-                eyebrowsStyleList.Add($"Style #{i + 1}");
+                eyebrowsStyleList.Add($"风格 #{i + 1}");
             }
 
             var ageingStyleList = new List<string>();
             for (var i = 0; i < GetNumHeadOverlayValues(3); i++)
             {
-                ageingStyleList.Add($"Style #{i + 1}");
+                ageingStyleList.Add($"风格 #{i + 1}");
             }
 
             var makeupStyleList = new List<string>();
             for (var i = 0; i < GetNumHeadOverlayValues(4); i++)
             {
-                makeupStyleList.Add($"Style #{i + 1}");
+                makeupStyleList.Add($"风格 #{i + 1}");
             }
 
             var blushStyleList = new List<string>();
             for (var i = 0; i < GetNumHeadOverlayValues(5); i++)
             {
-                blushStyleList.Add($"Style #{i + 1}");
+                blushStyleList.Add($"风格 #{i + 1}");
             }
 
             var complexionStyleList = new List<string>();
             for (var i = 0; i < GetNumHeadOverlayValues(6); i++)
             {
-                complexionStyleList.Add($"Style #{i + 1}");
+                complexionStyleList.Add($"风格 #{i + 1}");
             }
 
             var sunDamageStyleList = new List<string>();
             for (var i = 0; i < GetNumHeadOverlayValues(7); i++)
             {
-                sunDamageStyleList.Add($"Style #{i + 1}");
+                sunDamageStyleList.Add($"风格 #{i + 1}");
             }
 
             var lipstickStyleList = new List<string>();
             for (var i = 0; i < GetNumHeadOverlayValues(8); i++)
             {
-                lipstickStyleList.Add($"Style #{i + 1}");
+                lipstickStyleList.Add($"风格 #{i + 1}");
             }
 
             var molesFrecklesStyleList = new List<string>();
             for (var i = 0; i < GetNumHeadOverlayValues(9); i++)
             {
-                molesFrecklesStyleList.Add($"Style #{i + 1}");
+                molesFrecklesStyleList.Add($"风格 #{i + 1}");
             }
 
             var chestHairStyleList = new List<string>();
             for (var i = 0; i < GetNumHeadOverlayValues(10); i++)
             {
-                chestHairStyleList.Add($"Style #{i + 1}");
+                chestHairStyleList.Add($"风格 #{i + 1}");
             }
 
             var bodyBlemishesList = new List<string>();
             for (var i = 0; i < GetNumHeadOverlayValues(11); i++)
             {
-                bodyBlemishesList.Add($"Style #{i + 1}");
+                bodyBlemishesList.Add($"风格 #{i + 1}");
             }
 
             var eyeColorList = new List<string>();
             for (var i = 0; i < 32; i++)
             {
-                eyeColorList.Add($"Eye Color #{i + 1}");
+                eyeColorList.Add($"眼睛颜色 #{i + 1}");
             }
 
             /*
@@ -297,68 +296,135 @@ namespace vMenuClient.menus
             var currentEyeColor = editPed ? currentCharacter.PedAppearance.eyeColor : 0;
             SetPedEyeColor(Game.PlayerPed.Handle, currentEyeColor);
 
-            var hairStyles = new MenuListItem("Hair Style", hairStylesList, currentHairStyle, "Select a hair style.");
-            //MenuListItem hairColors = new MenuListItem("Hair Color", overlayColorsList, currentHairColor, "Select a hair color.");
-            var hairColors = new MenuListItem("Hair Color", overlayColorsList, currentHairColor, "Select a hair color.") { ShowColorPanel = true, ColorPanelColorType = MenuListItem.ColorPanelType.Hair };
-            //MenuListItem hairHighlightColors = new MenuListItem("Hair Highlight Color", overlayColorsList, currentHairHighlightColor, "Select a hair highlight color.");
-            var hairHighlightColors = new MenuListItem("Hair Highlight Color", overlayColorsList, currentHairHighlightColor, "Select a hair highlight color.") { ShowColorPanel = true, ColorPanelColorType = MenuListItem.ColorPanelType.Hair };
+            // 发型
+            var hairStyles = new MenuListItem("发型", hairStylesList, currentHairStyle, "选择一个发型。");
+            var hairColors = new MenuListItem("发色", overlayColorsList, currentHairColor, "选择一个发色。") 
+            { 
+                ShowColorPanel = true, 
+                ColorPanelColorType = MenuListItem.ColorPanelType.Hair 
+            };
+            var hairHighlightColors = new MenuListItem("高光", overlayColorsList, currentHairHighlightColor, "选择一个高光。") 
+            { 
+                ShowColorPanel = true, 
+                ColorPanelColorType = MenuListItem.ColorPanelType.Hair 
+            };
 
-            var blemishesStyle = new MenuListItem("Blemishes Style", blemishesStyleList, currentBlemishesStyle, "Select a blemishes style.");
-            //MenuSliderItem blemishesOpacity = new MenuSliderItem("Blemishes Opacity", "Select a blemishes opacity.", 0, 10, (int)(currentBlemishesOpacity * 10f), false);
-            var blemishesOpacity = new MenuListItem("Blemishes Opacity", opacity, (int)(currentBlemishesOpacity * 10f), "Select a blemishes opacity.") { ShowOpacityPanel = true };
+            // 痘痕
+            var blemishesStyle = new MenuListItem("痘痕样式", blemishesStyleList, currentBlemishesStyle, "选择一个痘痕样式。");
+            var blemishesOpacity = new MenuListItem("痘痕透明度", opacity, (int)(currentBlemishesOpacity * 10f), "选择痘痕的透明度。") 
+            { 
+                ShowOpacityPanel = true 
+            };
 
-            var beardStyles = new MenuListItem("Beard Style", beardStylesList, currentBeardStyle, "Select a beard/facial hair style.");
-            var beardOpacity = new MenuListItem("Beard Opacity", opacity, (int)(currentBeardOpacity * 10f), "Select the opacity for your beard/facial hair.") { ShowOpacityPanel = true };
-            var beardColor = new MenuListItem("Beard Color", overlayColorsList, currentBeardColor, "Select a beard color.") { ShowColorPanel = true, ColorPanelColorType = MenuListItem.ColorPanelType.Hair };
-            //MenuSliderItem beardOpacity = new MenuSliderItem("Beard Opacity", "Select the opacity for your beard/facial hair.", 0, 10, (int)(currentBeardOpacity * 10f), false);
-            //MenuListItem beardColor = new MenuListItem("Beard Color", overlayColorsList, currentBeardColor, "Select a beard color");
+            // 胡须
+            var beardStyles = new MenuListItem("胡须样式", beardStylesList, currentBeardStyle, "选择一个胡须/面部毛发样式。");
+            var beardOpacity = new MenuListItem("胡须透明度", opacity, (int)(currentBeardOpacity * 10f), "选择胡须/面部毛发的透明度。") 
+            { 
+                ShowOpacityPanel = true 
+            };
+            var beardColor = new MenuListItem("胡须颜色", overlayColorsList, currentBeardColor, "选择一个胡须颜色。") 
+            { 
+                ShowColorPanel = true, 
+                ColorPanelColorType = MenuListItem.ColorPanelType.Hair 
+            };
 
-            var eyebrowStyle = new MenuListItem("Eyebrows Style", eyebrowsStyleList, currentEyebrowStyle, "Select an eyebrows style.");
-            var eyebrowOpacity = new MenuListItem("Eyebrows Opacity", opacity, (int)(currentEyebrowOpacity * 10f), "Select the opacity for your eyebrows.") { ShowOpacityPanel = true };
-            var eyebrowColor = new MenuListItem("Eyebrows Color", overlayColorsList, currentEyebrowColor, "Select an eyebrows color.") { ShowColorPanel = true, ColorPanelColorType = MenuListItem.ColorPanelType.Hair };
-            //MenuSliderItem eyebrowOpacity = new MenuSliderItem("Eyebrows Opacity", "Select the opacity for your eyebrows.", 0, 10, (int)(currentEyebrowOpacity * 10f), false);
+            // 眉毛
+            var eyebrowStyle = new MenuListItem("眉毛样式", eyebrowsStyleList, currentEyebrowStyle, "选择一个眉毛样式。");
+            var eyebrowOpacity = new MenuListItem("眉毛透明度", opacity, (int)(currentEyebrowOpacity * 10f), "选择眉毛的透明度。") 
+            { 
+                ShowOpacityPanel = true 
+            };
+            var eyebrowColor = new MenuListItem("眉毛颜色", overlayColorsList, currentEyebrowColor, "选择一个眉毛颜色。") 
+            { 
+                ShowColorPanel = true, 
+                ColorPanelColorType = MenuListItem.ColorPanelType.Hair 
+            };
 
-            var ageingStyle = new MenuListItem("Ageing Style", ageingStyleList, currentAgeingStyle, "Select an ageing style.");
-            var ageingOpacity = new MenuListItem("Ageing Opacity", opacity, (int)(currentAgeingOpacity * 10f), "Select an ageing opacity.") { ShowOpacityPanel = true };
-            //MenuSliderItem ageingOpacity = new MenuSliderItem("Ageing Opacity", "Select an ageing opacity.", 0, 10, (int)(currentAgeingOpacity * 10f), false);
+            // 老化
+            var ageingStyle = new MenuListItem("老化样式", ageingStyleList, currentAgeingStyle, "选择一个老化样式。");
+            var ageingOpacity = new MenuListItem("老化透明度", opacity, (int)(currentAgeingOpacity * 10f), "选择老化的透明度。") 
+            { 
+                ShowOpacityPanel = true 
+            };
 
-            var makeupStyle = new MenuListItem("Makeup Style", makeupStyleList, currentMakeupStyle, "Select a makeup style.");
-            var makeupOpacity = new MenuListItem("Makeup Opacity", opacity, (int)(currentMakeupOpacity * 10f), "Select a makeup opacity") { ShowOpacityPanel = true };
-            //MenuSliderItem makeupOpacity = new MenuSliderItem("Makeup Opacity", 0, 10, (int)(currentMakeupOpacity * 10f), "Select a makeup opacity.");
-            var makeupColor = new MenuListItem("Makeup Color", overlayColorsList, currentMakeupColor, "Select a makeup color.") { ShowColorPanel = true, ColorPanelColorType = MenuListItem.ColorPanelType.Makeup };
+            // 化妆
+            var makeupStyle = new MenuListItem("化妆样式", makeupStyleList, currentMakeupStyle, "选择一个化妆样式。");
+            var makeupOpacity = new MenuListItem("化妆透明度", opacity, (int)(currentMakeupOpacity * 10f), "选择化妆的透明度。") 
+            { 
+                ShowOpacityPanel = true 
+            };
+            var makeupColor = new MenuListItem("化妆颜色", overlayColorsList, currentMakeupColor, "选择一个化妆颜色。") 
+            { 
+                ShowColorPanel = true, 
+                ColorPanelColorType = MenuListItem.ColorPanelType.Makeup 
+            };
 
-            var blushStyle = new MenuListItem("Blush Style", blushStyleList, currentBlushStyle, "Select a blush style.");
-            var blushOpacity = new MenuListItem("Blush Opacity", opacity, (int)(currentBlushOpacity * 10f), "Select a blush opacity.") { ShowOpacityPanel = true };
-            //MenuSliderItem blushOpacity = new MenuSliderItem("Blush Opacity", 0, 10, (int)(currentBlushOpacity * 10f), "Select a blush opacity.");
-            var blushColor = new MenuListItem("Blush Color", overlayColorsList, currentBlushColor, "Select a blush color.") { ShowColorPanel = true, ColorPanelColorType = MenuListItem.ColorPanelType.Makeup };
+            // 腮红
+            var blushStyle = new MenuListItem("腮红样式", blushStyleList, currentBlushStyle, "选择一个腮红样式。");
+            var blushOpacity = new MenuListItem("腮红透明度", opacity, (int)(currentBlushOpacity * 10f), "选择腮红的透明度。") 
+            { 
+                ShowOpacityPanel = true 
+            };
+            var blushColor = new MenuListItem("腮红颜色", overlayColorsList, currentBlushColor, "选择一个腮红颜色。") 
+            { 
+                ShowColorPanel = true, 
+                ColorPanelColorType = MenuListItem.ColorPanelType.Makeup 
+            };
 
-            var complexionStyle = new MenuListItem("Complexion Style", complexionStyleList, currentComplexionStyle, "Select a complexion style.");
-            //MenuSliderItem complexionOpacity = new MenuSliderItem("Complexion Opacity", 0, 10, (int)(currentComplexionOpacity * 10f), "Select a complexion opacity.");
-            var complexionOpacity = new MenuListItem("Complexion Opacity", opacity, (int)(currentComplexionOpacity * 10f), "Select a complexion opacity.") { ShowOpacityPanel = true };
+            // 肤色
+            var complexionStyle = new MenuListItem("肤色样式", complexionStyleList, currentComplexionStyle, "选择一个肤色样式。");
+            var complexionOpacity = new MenuListItem("肤色透明度", opacity, (int)(currentComplexionOpacity * 10f), "选择肤色的透明度。") 
+            { 
+                ShowOpacityPanel = true 
+            };
 
-            var sunDamageStyle = new MenuListItem("Sun Damage Style", sunDamageStyleList, currentSunDamageStyle, "Select a sun damage style.");
-            //MenuSliderItem sunDamageOpacity = new MenuSliderItem("Sun Damage Opacity", 0, 10, (int)(currentSunDamageOpacity * 10f), "Select a sun damage opacity.");
-            var sunDamageOpacity = new MenuListItem("Sun Damage Opacity", opacity, (int)(currentSunDamageOpacity * 10f), "Select a sun damage opacity.") { ShowOpacityPanel = true };
+            // 日晒损伤
+            var sunDamageStyle = new MenuListItem("日晒损伤样式", sunDamageStyleList, currentSunDamageStyle, "选择一个日晒损伤样式。");
+            var sunDamageOpacity = new MenuListItem("日晒损伤透明度", opacity, (int)(currentSunDamageOpacity * 10f), "选择日晒损伤的透明度。") 
+            { 
+                ShowOpacityPanel = true 
+            };
 
-            var lipstickStyle = new MenuListItem("Lipstick Style", lipstickStyleList, currentLipstickStyle, "Select a lipstick style.");
-            //MenuSliderItem lipstickOpacity = new MenuSliderItem("Lipstick Opacity", 0, 10, (int)(currentLipstickOpacity * 10f), "Select a lipstick opacity.");
-            var lipstickOpacity = new MenuListItem("Lipstick Opacity", opacity, (int)(currentLipstickOpacity * 10f), "Select a lipstick opacity.") { ShowOpacityPanel = true };
-            var lipstickColor = new MenuListItem("Lipstick Color", overlayColorsList, currentLipstickColor, "Select a lipstick color.") { ShowColorPanel = true, ColorPanelColorType = MenuListItem.ColorPanelType.Makeup };
+            // 唇膏
+            var lipstickStyle = new MenuListItem("口红样式", lipstickStyleList, currentLipstickStyle, "选择一个口红样式。");
+            var lipstickOpacity = new MenuListItem("口红透明度", opacity, (int)(currentLipstickOpacity * 10f), "选择口红的透明度。") 
+            { 
+                ShowOpacityPanel = true 
+            };
+            var lipstickColor = new MenuListItem("口红颜色", overlayColorsList, currentLipstickColor, "选择一个口红颜色。") 
+            { 
+                ShowColorPanel = true, 
+                ColorPanelColorType = MenuListItem.ColorPanelType.Makeup 
+            };
 
-            var molesFrecklesStyle = new MenuListItem("Moles and Freckles Style", molesFrecklesStyleList, currentMolesFrecklesStyle, "Select a moles and freckles style.");
-            //MenuSliderItem molesFrecklesOpacity = new MenuSliderItem("Moles and Freckles Opacity", 0, 10, (int)(currentMolesFrecklesOpacity * 10f), "Select a moles and freckles opacity.");
-            var molesFrecklesOpacity = new MenuListItem("Moles and Freckles Opacity", opacity, (int)(currentMolesFrecklesOpacity * 10f), "Select a moles and freckles opacity.") { ShowOpacityPanel = true };
+            // 痣和雀斑
+            var molesFrecklesStyle = new MenuListItem("痣和雀斑样式", molesFrecklesStyleList, currentMolesFrecklesStyle, "选择一个痣和雀斑样式。");
+            var molesFrecklesOpacity = new MenuListItem("痣和雀斑透明度", opacity, (int)(currentMolesFrecklesOpacity * 10f), "选择痣和雀斑的透明度。") 
+            { 
+                ShowOpacityPanel = true 
+            };
 
-            var chestHairStyle = new MenuListItem("Chest Hair Style", chestHairStyleList, currentChesthairStyle, "Select a chest hair style.");
-            //MenuSliderItem chestHairOpacity = new MenuSliderItem("Chest Hair Opacity", 0, 10, (int)(currentChesthairOpacity * 10f), "Select a chest hair opacity.");
-            var chestHairOpacity = new MenuListItem("Chest Hair Opacity", opacity, (int)(currentChesthairOpacity * 10f), "Select a chest hair opacity.") { ShowOpacityPanel = true };
-            var chestHairColor = new MenuListItem("Chest Hair Color", overlayColorsList, currentChesthairColor, "Select a chest hair color.") { ShowColorPanel = true, ColorPanelColorType = MenuListItem.ColorPanelType.Hair };
+            // 胸毛
+            var chestHairStyle = new MenuListItem("胸毛样式", chestHairStyleList, currentChesthairStyle, "选择一个胸毛样式。");
+            var chestHairOpacity = new MenuListItem("胸毛透明度", opacity, (int)(currentChesthairOpacity * 10f), "选择胸毛的透明度。") 
+            { 
+                ShowOpacityPanel = true 
+            };
+            var chestHairColor = new MenuListItem("胸毛颜色", overlayColorsList, currentChesthairColor, "选择一个胸毛颜色。") 
+            { 
+                ShowColorPanel = true, 
+                ColorPanelColorType = MenuListItem.ColorPanelType.Hair 
+            };
 
-            // Body blemishes
-            var bodyBlemishesStyle = new MenuListItem("Body Blemishes Style", bodyBlemishesList, currentBodyBlemishesStyle, "Select body blemishes style.");
-            var bodyBlemishesOpacity = new MenuListItem("Body Blemishes Opacity", opacity, (int)(currentBodyBlemishesOpacity * 10f), "Select body blemishes opacity.") { ShowOpacityPanel = true };
+            // 身体瑕疵
+            var bodyBlemishesStyle = new MenuListItem("身体瑕疵样式", bodyBlemishesList, currentBodyBlemishesStyle, "选择身体瑕疵样式。");
+            var bodyBlemishesOpacity = new MenuListItem("身体瑕疵透明度", opacity, (int)(currentBodyBlemishesOpacity * 10f), "选择身体瑕疵的透明度。") 
+            { 
+                ShowOpacityPanel = true 
+            };
 
-            var eyeColor = new MenuListItem("Eye Colors", eyeColorList, currentEyeColor, "Select an eye/contact lens color.");
+            // 眼睛颜色
+            var eyeColor = new MenuListItem("眼睛颜色", eyeColorList, currentEyeColor, "选择一个眼睛/隐形眼镜颜色。");
 
             appearanceMenu.AddMenuItem(hairStyles);
             appearanceMenu.AddMenuItem(hairColors);
@@ -455,36 +521,54 @@ namespace vMenuClient.menus
             }
             else
             {
+               // 禁用胡须样式
                 beardStyles.Enabled = false;
                 beardStyles.LeftIcon = MenuItem.Icon.LOCK;
-                beardStyles.Description = "This is not available for female characters.";
+                beardStyles.Description = "女性角色无法使用此选项。";
 
+                // 禁用胡须透明度
                 beardOpacity.Enabled = false;
                 beardOpacity.LeftIcon = MenuItem.Icon.LOCK;
-                beardOpacity.Description = "This is not available for female characters.";
+                beardOpacity.Description = "女性角色无法使用此选项。";
 
+                // 禁用胡须颜色
                 beardColor.Enabled = false;
                 beardColor.LeftIcon = MenuItem.Icon.LOCK;
-                beardColor.Description = "This is not available for female characters.";
+                beardColor.Description = "女性角色无法使用此选项。";
 
-
+                // 禁用胸毛样式
                 chestHairStyle.Enabled = false;
                 chestHairStyle.LeftIcon = MenuItem.Icon.LOCK;
-                chestHairStyle.Description = "This is not available for female characters.";
+                chestHairStyle.Description = "女性角色无法使用此选项。";
 
+                // 禁用胸毛透明度
                 chestHairOpacity.Enabled = false;
                 chestHairOpacity.LeftIcon = MenuItem.Icon.LOCK;
-                chestHairOpacity.Description = "This is not available for female characters.";
+                chestHairOpacity.Description = "女性角色无法使用此选项。";
 
+                // 禁用胸毛颜色
                 chestHairColor.Enabled = false;
                 chestHairColor.LeftIcon = MenuItem.Icon.LOCK;
-                chestHairColor.Description = "This is not available for female characters.";
+                chestHairColor.Description = "女性角色无法使用此选项。";
             }
 
             #endregion
 
             #region clothing options menu
-            var clothingCategoryNames = new string[12] { "Unused (head)", "Masks", "Unused (hair)", "Upper Body", "Lower Body", "Bags & Parachutes", "Shoes", "Scarfs & Chains", "Shirt & Accessory", "Body Armor & Accessory 2", "Badges & Logos", "Shirt Overlay & Jackets" };
+            var clothingCategoryNames = new string[12] { 
+                "头部",           // Unused (head)
+                "面具",                     // Masks
+                "头发",           // Unused (hair)
+                "上身服装",                 // Upper Body
+                "下身服装",                 // Lower Body
+                "背包与降落伞",             // Bags & Parachutes
+                "鞋子",                     // Shoes
+                "围巾与项链",               // Scarfs & Chains
+                "衬衫与配件",               // Shirt & Accessory
+                "护甲与配件2",             // Body Armor & Accessory 2
+                "徽章与标志",               // Badges & Logos
+                "衬衫覆盖物与夹克"          // Shirt Overlay & Jackets
+                };
             for (var i = 0; i < 12; i++)
             {
                 if (i is not 0 and not 2)
@@ -497,19 +581,19 @@ namespace vMenuClient.menus
                     var items = new List<string>();
                     for (var x = 0; x < maxDrawables; x++)
                     {
-                        items.Add($"Drawable #{x} (of {maxDrawables})");
+                        items.Add($"可选的 #{x} (of {maxDrawables})");
                     }
 
                     var maxTextures = GetNumberOfPedTextureVariations(Game.PlayerPed.Handle, i, currentVariationIndex);
 
-                    var listItem = new MenuListItem(clothingCategoryNames[i], items, currentVariationIndex, $"Select a drawable using the arrow keys and press ~o~enter~s~ to cycle through all available textures. Currently selected texture: #{currentVariationTextureIndex + 1} (of {maxTextures}).");
+                    var listItem = new MenuListItem(clothingCategoryNames[i], items, currentVariationIndex, $"使用箭头键选择一个服装变体，然后按 ~o~回车~s~ 切换所有可用的纹理。当前选中的纹理：#{currentVariationTextureIndex + 1} (共 {maxTextures})。");
                     clothesMenu.AddMenuItem(listItem);
                 }
             }
             #endregion
 
             #region props options menu
-            var propNames = new string[5] { "Hats & Helmets", "Glasses", "Misc Props", "Watches", "Bracelets" };
+            var propNames = new string[5] {  "帽子和头盔", "眼镜", "杂项道具", "手表", "手链" };
             for (var x = 0; x < 5; x++)
             {
                 var propId = x;
@@ -524,9 +608,9 @@ namespace vMenuClient.menus
                 var propsList = new List<string>();
                 for (var i = 0; i < GetNumberOfPedPropDrawableVariations(Game.PlayerPed.Handle, propId); i++)
                 {
-                    propsList.Add($"Prop #{i} (of {GetNumberOfPedPropDrawableVariations(Game.PlayerPed.Handle, propId)})");
+                    propsList.Add($"道具 #{i} (of {GetNumberOfPedPropDrawableVariations(Game.PlayerPed.Handle, propId)})");
                 }
-                propsList.Add("No Prop");
+                propsList.Add("无道具");
 
 
                 if (GetPedPropIndex(Game.PlayerPed.Handle, propId) != -1)
@@ -591,43 +675,43 @@ namespace vMenuClient.menus
                 var counter = 1;
                 foreach (var tattoo in MaleTattoosCollection.HEAD)
                 {
-                    headTattoosList.Add($"Tattoo #{counter} (of {MaleTattoosCollection.HEAD.Count})");
+                    headTattoosList.Add($"纹身 #{counter} (共 {MaleTattoosCollection.HEAD.Count})");
                     counter++;
                 }
                 counter = 1;
                 foreach (var tattoo in MaleTattoosCollection.TORSO)
                 {
-                    torsoTattoosList.Add($"Tattoo #{counter} (of {MaleTattoosCollection.TORSO.Count})");
+                    torsoTattoosList.Add($"纹身 #{counter} (共 {MaleTattoosCollection.TORSO.Count})");
                     counter++;
                 }
                 counter = 1;
                 foreach (var tattoo in MaleTattoosCollection.LEFT_ARM)
                 {
-                    leftArmTattoosList.Add($"Tattoo #{counter} (of {MaleTattoosCollection.LEFT_ARM.Count})");
+                    leftArmTattoosList.Add($"纹身 #{counter} (共 {MaleTattoosCollection.LEFT_ARM.Count})");
                     counter++;
                 }
                 counter = 1;
                 foreach (var tattoo in MaleTattoosCollection.RIGHT_ARM)
                 {
-                    rightArmTattoosList.Add($"Tattoo #{counter} (of {MaleTattoosCollection.RIGHT_ARM.Count})");
+                    rightArmTattoosList.Add($"纹身 #{counter} (共 {MaleTattoosCollection.RIGHT_ARM.Count})");
                     counter++;
                 }
                 counter = 1;
                 foreach (var tattoo in MaleTattoosCollection.LEFT_LEG)
                 {
-                    leftLegTattoosList.Add($"Tattoo #{counter} (of {MaleTattoosCollection.LEFT_LEG.Count})");
+                    leftLegTattoosList.Add($"纹身 #{counter} (共 {MaleTattoosCollection.LEFT_LEG.Count})");
                     counter++;
                 }
                 counter = 1;
                 foreach (var tattoo in MaleTattoosCollection.RIGHT_LEG)
                 {
-                    rightLegTattoosList.Add($"Tattoo #{counter} (of {MaleTattoosCollection.RIGHT_LEG.Count})");
+                    rightLegTattoosList.Add($"纹身 #{counter} (共 {MaleTattoosCollection.RIGHT_LEG.Count})");
                     counter++;
                 }
                 counter = 1;
                 foreach (var tattoo in MaleTattoosCollection.BADGES)
                 {
-                    badgeTattoosList.Add($"Badge #{counter} (of {MaleTattoosCollection.BADGES.Count})");
+                    badgeTattoosList.Add($"徽章 #{counter} (共 {MaleTattoosCollection.BADGES.Count})");
                     counter++;
                 }
             }
@@ -636,55 +720,55 @@ namespace vMenuClient.menus
                 var counter = 1;
                 foreach (var tattoo in FemaleTattoosCollection.HEAD)
                 {
-                    headTattoosList.Add($"Tattoo #{counter} (of {FemaleTattoosCollection.HEAD.Count})");
+                    headTattoosList.Add($"纹身 #{counter} (共 {FemaleTattoosCollection.HEAD.Count})");
                     counter++;
                 }
                 counter = 1;
                 foreach (var tattoo in FemaleTattoosCollection.TORSO)
                 {
-                    torsoTattoosList.Add($"Tattoo #{counter} (of {FemaleTattoosCollection.TORSO.Count})");
+                    torsoTattoosList.Add($"纹身 #{counter} (共 {FemaleTattoosCollection.TORSO.Count})");
                     counter++;
                 }
                 counter = 1;
                 foreach (var tattoo in FemaleTattoosCollection.LEFT_ARM)
                 {
-                    leftArmTattoosList.Add($"Tattoo #{counter} (of {FemaleTattoosCollection.LEFT_ARM.Count})");
+                    leftArmTattoosList.Add($"纹身 #{counter} (共 {FemaleTattoosCollection.LEFT_ARM.Count})");
                     counter++;
                 }
                 counter = 1;
                 foreach (var tattoo in FemaleTattoosCollection.RIGHT_ARM)
                 {
-                    rightArmTattoosList.Add($"Tattoo #{counter} (of {FemaleTattoosCollection.RIGHT_ARM.Count})");
+                    rightArmTattoosList.Add($"纹身 #{counter} (共 {FemaleTattoosCollection.RIGHT_ARM.Count})");
                     counter++;
                 }
                 counter = 1;
                 foreach (var tattoo in FemaleTattoosCollection.LEFT_LEG)
                 {
-                    leftLegTattoosList.Add($"Tattoo #{counter} (of {FemaleTattoosCollection.LEFT_LEG.Count})");
+                    leftLegTattoosList.Add($"纹身 #{counter} (共 {FemaleTattoosCollection.LEFT_LEG.Count})");
                     counter++;
                 }
                 counter = 1;
                 foreach (var tattoo in FemaleTattoosCollection.RIGHT_LEG)
                 {
-                    rightLegTattoosList.Add($"Tattoo #{counter} (of {FemaleTattoosCollection.RIGHT_LEG.Count})");
+                    rightLegTattoosList.Add($"纹身 #{counter} (共 {FemaleTattoosCollection.RIGHT_LEG.Count})");
                     counter++;
                 }
                 counter = 1;
                 foreach (var tattoo in FemaleTattoosCollection.BADGES)
                 {
-                    badgeTattoosList.Add($"Badge #{counter} (of {FemaleTattoosCollection.BADGES.Count})");
+                    badgeTattoosList.Add($"徽章 #{counter} (共 {FemaleTattoosCollection.BADGES.Count})");
                     counter++;
                 }
             }
 
-            const string tatDesc = "Cycle through the list to preview tattoos. If you like one, press enter to select it, selecting it will add the tattoo if you don't already have it. If you already have that tattoo then the tattoo will be removed.";
-            var headTatts = new MenuListItem("Head Tattoos", headTattoosList, 0, tatDesc);
-            var torsoTatts = new MenuListItem("Torso Tattoos", torsoTattoosList, 0, tatDesc);
-            var leftArmTatts = new MenuListItem("Left Arm Tattoos", leftArmTattoosList, 0, tatDesc);
-            var rightArmTatts = new MenuListItem("Right Arm Tattoos", rightArmTattoosList, 0, tatDesc);
-            var leftLegTatts = new MenuListItem("Left Leg Tattoos", leftLegTattoosList, 0, tatDesc);
-            var rightLegTatts = new MenuListItem("Right Leg Tattoos", rightLegTattoosList, 0, tatDesc);
-            var badgeTatts = new MenuListItem("Badge Overlays", badgeTattoosList, 0, tatDesc);
+            const string tatDesc = "浏览列表以预览纹身。如果你喜欢其中一个，按回车键选择它。选择纹身会将其添加到你的角色身上，如果你已经有了该纹身，则该纹身将被移除。";
+            var headTatts = new MenuListItem("头部纹身", headTattoosList, 0, tatDesc);
+            var torsoTatts = new MenuListItem("躯干纹身", torsoTattoosList, 0, tatDesc);
+            var leftArmTatts = new MenuListItem("左臂纹身", leftArmTattoosList, 0, tatDesc);
+            var rightArmTatts = new MenuListItem("右臂纹身", rightArmTattoosList, 0, tatDesc);
+            var leftLegTatts = new MenuListItem("左腿纹身", leftLegTattoosList, 0, tatDesc);
+            var rightLegTatts = new MenuListItem("右腿纹身", rightLegTattoosList, 0, tatDesc);
+            var badgeTatts = new MenuListItem("徽章覆盖", badgeTattoosList, 0, tatDesc);
 
             tattoosMenu.AddMenuItem(headTatts);
             tattoosMenu.AddMenuItem(torsoTatts);
@@ -693,7 +777,7 @@ namespace vMenuClient.menus
             tattoosMenu.AddMenuItem(leftLegTatts);
             tattoosMenu.AddMenuItem(rightLegTatts);
             tattoosMenu.AddMenuItem(badgeTatts);
-            tattoosMenu.AddMenuItem(new MenuItem("Remove All Tattoos", "Click this if you want to remove all tattoos and start over."));
+            tattoosMenu.AddMenuItem(new MenuItem("移除所有纹身", "点击此处以移除所有纹身并重新开始。"));
             #endregion
 
             List<string> categoryNames = GetAllCategoryNames();
@@ -725,18 +809,18 @@ namespace vMenuClient.menus
                 var json = JsonConvert.SerializeObject(currentCharacter);
                 if (StorageManager.SaveJsonData(currentCharacter.SaveName, json, true))
                 {
-                    Notify.Success("Your character was saved successfully.");
+                    Notify.Success("您的角色已成功保存。");
                     return true;
                 }
                 else
                 {
-                    Notify.Error("Your character could not be saved. Reason unknown. :(");
+                    Notify.Error("您的角色无法保存。原因未知。:(");
                     return false;
                 }
             }
             else
             {
-                var name = await GetUserInput(windowTitle: "Enter a save name.", maxInputLength: 30);
+                var name = await GetUserInput(windowTitle: "请输入保存名称。", maxInputLength: 30);
                 if (string.IsNullOrEmpty(name))
                 {
                     Notify.Error(CommonErrors.InvalidInput);
@@ -749,13 +833,13 @@ namespace vMenuClient.menus
 
                     if (StorageManager.SaveJsonData("mp_ped_" + name, json, false))
                     {
-                        Notify.Success($"Your character (~g~<C>{name}</C>~s~) has been saved.");
-                        Log($"Saved Character {name}. Data: {json}");
+                        Notify.Success($"您的角色 (~g~<C>{name}</C>~s~) 已被保存。");
+                        Log($"保存角色 {name}. 数据: {json}");
                         return true;
                     }
                     else
                     {
-                        Notify.Error($"Saving failed, most likely because this name (~y~<C>{name}</C>~s~) is already in use.");
+                        Notify.Error($"保存失败，可能是因为该名称 (~y~<C>{name}</C>~s~) 已经被使用。");
                         return false;
                     }
                 }
@@ -769,9 +853,9 @@ namespace vMenuClient.menus
         private void CreateMenu()
         {
             // Create the menu.
-            menu = new Menu(Game.Player.Name, "MP Ped Customization");
+             menu = new Menu(Game.Player.Name, "MP 角色定制");
 
-            var savedCharacters = new MenuItem("Saved Characters", "Spawn, edit or delete your existing saved multiplayer characters.")
+            var savedCharacters = new MenuItem("已保存角色", "生成、编辑或删除您现有的游戏角色。")
             {
                 Label = "→→→"
             };
@@ -797,48 +881,47 @@ namespace vMenuClient.menus
 
             menu.RefreshIndex();
 
-            createCharacterMenu.InstructionalButtons.Add(Control.MoveLeftRight, "Turn Head");
-            inheritanceMenu.InstructionalButtons.Add(Control.MoveLeftRight, "Turn Head");
-            appearanceMenu.InstructionalButtons.Add(Control.MoveLeftRight, "Turn Head");
-            faceShapeMenu.InstructionalButtons.Add(Control.MoveLeftRight, "Turn Head");
-            tattoosMenu.InstructionalButtons.Add(Control.MoveLeftRight, "Turn Head");
-            clothesMenu.InstructionalButtons.Add(Control.MoveLeftRight, "Turn Head");
-            propsMenu.InstructionalButtons.Add(Control.MoveLeftRight, "Turn Head");
+            createCharacterMenu.InstructionalButtons.Add(Control.MoveLeftRight, "旋转头部");
+            inheritanceMenu.InstructionalButtons.Add(Control.MoveLeftRight, "旋转头部");
+            appearanceMenu.InstructionalButtons.Add(Control.MoveLeftRight, "旋转头部");
+            faceShapeMenu.InstructionalButtons.Add(Control.MoveLeftRight, "旋转头部");
+            tattoosMenu.InstructionalButtons.Add(Control.MoveLeftRight, "旋转头部");
+            clothesMenu.InstructionalButtons.Add(Control.MoveLeftRight, "旋转头部");
+            propsMenu.InstructionalButtons.Add(Control.MoveLeftRight, "旋转头部");
 
-            createCharacterMenu.InstructionalButtons.Add(Control.PhoneExtraOption, "Turn Character");
-            inheritanceMenu.InstructionalButtons.Add(Control.PhoneExtraOption, "Turn Character");
-            appearanceMenu.InstructionalButtons.Add(Control.PhoneExtraOption, "Turn Character");
-            faceShapeMenu.InstructionalButtons.Add(Control.PhoneExtraOption, "Turn Character");
-            tattoosMenu.InstructionalButtons.Add(Control.PhoneExtraOption, "Turn Character");
-            clothesMenu.InstructionalButtons.Add(Control.PhoneExtraOption, "Turn Character");
-            propsMenu.InstructionalButtons.Add(Control.PhoneExtraOption, "Turn Character");
+            createCharacterMenu.InstructionalButtons.Add(Control.PhoneExtraOption, "旋转角色");
+            inheritanceMenu.InstructionalButtons.Add(Control.PhoneExtraOption, "旋转角色");
+            appearanceMenu.InstructionalButtons.Add(Control.PhoneExtraOption, "旋转角色");
+            faceShapeMenu.InstructionalButtons.Add(Control.PhoneExtraOption, "旋转角色");
+            tattoosMenu.InstructionalButtons.Add(Control.PhoneExtraOption, "旋转角色");
+            clothesMenu.InstructionalButtons.Add(Control.PhoneExtraOption, "旋转角色");
+            propsMenu.InstructionalButtons.Add(Control.PhoneExtraOption, "旋转角色");
 
-            createCharacterMenu.InstructionalButtons.Add(Control.ParachuteBrakeRight, "Turn Camera Right");
-            inheritanceMenu.InstructionalButtons.Add(Control.ParachuteBrakeRight, "Turn Camera Right");
-            appearanceMenu.InstructionalButtons.Add(Control.ParachuteBrakeRight, "Turn Camera Right");
-            faceShapeMenu.InstructionalButtons.Add(Control.ParachuteBrakeRight, "Turn Camera Right");
-            tattoosMenu.InstructionalButtons.Add(Control.ParachuteBrakeRight, "Turn Camera Right");
-            clothesMenu.InstructionalButtons.Add(Control.ParachuteBrakeRight, "Turn Camera Right");
-            propsMenu.InstructionalButtons.Add(Control.ParachuteBrakeRight, "Turn Camera Right");
+            createCharacterMenu.InstructionalButtons.Add(Control.ParachuteBrakeRight, "右转相机");
+            inheritanceMenu.InstructionalButtons.Add(Control.ParachuteBrakeRight, "右转相机");
+            appearanceMenu.InstructionalButtons.Add(Control.ParachuteBrakeRight, "右转相机");
+            faceShapeMenu.InstructionalButtons.Add(Control.ParachuteBrakeRight, "右转相机");
+            tattoosMenu.InstructionalButtons.Add(Control.ParachuteBrakeRight, "右转相机");
+            clothesMenu.InstructionalButtons.Add(Control.ParachuteBrakeRight, "右转相机");
+            propsMenu.InstructionalButtons.Add(Control.ParachuteBrakeRight, "右转相机");
 
-            createCharacterMenu.InstructionalButtons.Add(Control.ParachuteBrakeLeft, "Turn Camera Left");
-            inheritanceMenu.InstructionalButtons.Add(Control.ParachuteBrakeLeft, "Turn Camera Left");
-            appearanceMenu.InstructionalButtons.Add(Control.ParachuteBrakeLeft, "Turn Camera Left");
-            faceShapeMenu.InstructionalButtons.Add(Control.ParachuteBrakeLeft, "Turn Camera Left");
-            tattoosMenu.InstructionalButtons.Add(Control.ParachuteBrakeLeft, "Turn Camera Left");
-            clothesMenu.InstructionalButtons.Add(Control.ParachuteBrakeLeft, "Turn Camera Left");
-            propsMenu.InstructionalButtons.Add(Control.ParachuteBrakeLeft, "Turn Camera Left");
+            createCharacterMenu.InstructionalButtons.Add(Control.ParachuteBrakeLeft, "左转相机");
+            inheritanceMenu.InstructionalButtons.Add(Control.ParachuteBrakeLeft, "左转相机");
+            appearanceMenu.InstructionalButtons.Add(Control.ParachuteBrakeLeft, "左转相机");
+            faceShapeMenu.InstructionalButtons.Add(Control.ParachuteBrakeLeft, "左转相机");
+            tattoosMenu.InstructionalButtons.Add(Control.ParachuteBrakeLeft, "左转相机");
+            clothesMenu.InstructionalButtons.Add(Control.ParachuteBrakeLeft, "左转相机");
+            propsMenu.InstructionalButtons.Add(Control.ParachuteBrakeLeft, "左转相机");
 
-
-            var inheritanceButton = new MenuItem("Character Inheritance", "Character inheritance options.");
-            var appearanceButton = new MenuItem("Character Appearance", "Character appearance options.");
-            var faceButton = new MenuItem("Character Face Shape Options", "Character face shape options.");
-            var tattoosButton = new MenuItem("Character Tattoo Options", "Character tattoo options.");
-            var clothesButton = new MenuItem("Character Clothes", "Character clothes.");
-            var propsButton = new MenuItem("Character Props", "Character props.");
-            var saveButton = new MenuItem("Save Character", "Save your character.");
-            var exitNoSave = new MenuItem("Exit Without Saving", "Are you sure? All unsaved work will be lost.");
-            var faceExpressionList = new MenuListItem("Facial Expression", new List<string> { "Normal", "Happy", "Angry", "Aiming", "Injured", "Stressed", "Smug", "Sulk" }, 0, "Set a facial expression that will be used whenever your ped is idling.");
+            var inheritanceButton = new MenuItem("角色继承", "角色继承选项。");
+            var appearanceButton = new MenuItem("角色外观", "角色外观选项。");
+            var faceButton = new MenuItem("角色面部形状选项", "角色面部形状选项。");
+            var tattoosButton = new MenuItem("角色纹身选项", "角色纹身选项。");
+            var clothesButton = new MenuItem("角色衣物", "角色衣物。");
+            var propsButton = new MenuItem("角色道具", "角色道具。");
+            var saveButton = new MenuItem("保存角色", "保存您的角色。");
+            var exitNoSave = new MenuItem("退出不保存", "您确定吗？所有未保存的工作将会丢失。");
+            var faceExpressionList = new MenuListItem("面部表情", new List<string> { "正常", "快乐", "生气", "瞄准", "受伤", "紧张", "得意", "闷闷不乐" }, 0, "设置一个面部表情，角色在闲置时将使用该表情。");
 
             inheritanceButton.Label = "→→→";
             appearanceButton.Label = "→→→";
@@ -875,7 +958,7 @@ namespace vMenuClient.menus
                 var basePed = GetPedHeadBlendFirstIndex(listId);
 
                 // list 0/2 are male, list 1/3 are female
-                var suffix = $" ({(listId % 2 == 0 ? "Male" : "Female")})";
+                var suffix = $" ({(listId % 2 == 0 ? "男" : "女")})";
 
                 for (var i = 0; i < GetNumParentPedsOfType(listId); i++)
                 {
@@ -934,11 +1017,11 @@ namespace vMenuClient.menus
                 listIdx++;
             }
 
-            var inheritanceDads = new MenuListItem("Father", dads.Keys.ToList(), 0, "Select a father.");
-            var inheritanceMoms = new MenuListItem("Mother", moms.Keys.ToList(), 0, "Select a mother.");
+            var inheritanceDads = new MenuListItem("父亲", dads.Keys.ToList(), 0, "选择一个父亲。");
+            var inheritanceMoms = new MenuListItem("母亲", moms.Keys.ToList(), 0, "选择一个母亲。");
             var mixValues = new List<float>() { 0.0f, 0.1f, 0.2f, 0.3f, 0.4f, 0.5f, 0.6f, 0.7f, 0.8f, 0.9f, 1.0f };
-            var inheritanceShapeMix = new MenuSliderItem("Head Shape Mix", "Select how much of your head shape should be inherited from your father or mother. All the way on the left is your dad, all the way on the right is your mom.", 0, 10, 5, true) { SliderLeftIcon = MenuItem.Icon.MALE, SliderRightIcon = MenuItem.Icon.FEMALE };
-            var inheritanceSkinMix = new MenuSliderItem("Body Skin Mix", "Select how much of your body skin tone should be inherited from your father or mother. All the way on the left is your dad, all the way on the right is your mom.", 0, 10, 5, true) { SliderLeftIcon = MenuItem.Icon.MALE, SliderRightIcon = MenuItem.Icon.FEMALE };
+            var inheritanceShapeMix = new MenuSliderItem("头部形状混合", "选择您头部形状中从父亲或母亲那里继承的比例。最左边是您的父亲，最右边是您的母亲。", 0, 10, 5, true) { SliderLeftIcon = MenuItem.Icon.MALE, SliderRightIcon = MenuItem.Icon.FEMALE };
+            var inheritanceSkinMix = new MenuSliderItem("身体肤色混合", "选择您身体肤色中从父亲或母亲那里继承的比例。最左边是您的父亲，最右边是您的母亲。", 0, 10, 5, true) { SliderLeftIcon = MenuItem.Icon.MALE, SliderRightIcon = MenuItem.Icon.FEMALE };
 
             inheritanceMenu.AddMenuItem(inheritanceDads);
             inheritanceMenu.AddMenuItem(inheritanceMoms);
@@ -1280,7 +1363,7 @@ namespace vMenuClient.menus
                 var maxTextures = GetNumberOfPedTextureVariations(Game.PlayerPed.Handle, componentIndex, newSelectionIndex);
 
                 currentCharacter.DrawableVariations.clothes[componentIndex] = new KeyValuePair<int, int>(newSelectionIndex, newTextureIndex);
-                listItem.Description = $"Select a drawable using the arrow keys and press ~o~enter~s~ to cycle through all available textures. Currently selected texture: #{newTextureIndex + 1} (of {maxTextures}).";
+                listItem.Description = $"使用箭头键选择一个可绘制项，然后按 ~o~回车~s~ 以浏览所有可用的纹理。当前选中的纹理是：#{newTextureIndex + 1}（共 {maxTextures} 个）。";
             };
 
             clothesMenu.OnListItemSelect += (sender, listItem, listIndex, realIndex) =>
@@ -1299,7 +1382,7 @@ namespace vMenuClient.menus
                 var maxTextures = GetNumberOfPedTextureVariations(Game.PlayerPed.Handle, componentIndex, listIndex);
 
                 currentCharacter.DrawableVariations.clothes[componentIndex] = new KeyValuePair<int, int>(listIndex, newTextureIndex);
-                listItem.Description = $"Select a drawable using the arrow keys and press ~o~enter~s~ to cycle through all available textures. Currently selected texture: #{newTextureIndex + 1} (of {maxTextures}).";
+                listItem.Description = $"使用箭头键选择一个可绘制项，然后按 ~o~回车~s~ 以循环浏览所有可用的纹理。当前选中的纹理是：#{newTextureIndex + 1}（共 {maxTextures} 个）。";
             };
             #endregion
 
@@ -1323,7 +1406,7 @@ namespace vMenuClient.menus
                     ClearPedProp(Game.PlayerPed.Handle, propIndex);
                     currentCharacter.PropVariations.props ??= new Dictionary<int, KeyValuePair<int, int>>();
                     currentCharacter.PropVariations.props[propIndex] = new KeyValuePair<int, int>(-1, -1);
-                    listItem.Description = $"Select a prop using the arrow keys and press ~o~enter~s~ to cycle through all available textures.";
+                    listItem.Description = $"使用箭头键选择一个道具，然后按 ~o~回车~s~ 以循环浏览所有可用的纹理。";
                 }
                 else
                 {
@@ -1332,12 +1415,12 @@ namespace vMenuClient.menus
                     currentCharacter.PropVariations.props[propIndex] = new KeyValuePair<int, int>(newSelectionIndex, textureIndex);
                     if (GetPedPropIndex(Game.PlayerPed.Handle, propIndex) == -1)
                     {
-                        listItem.Description = $"Select a prop using the arrow keys and press ~o~enter~s~ to cycle through all available textures.";
+                        listItem.Description = $"使用箭头键选择一个道具，然后按 ~o~回车~s~ 以循环浏览所有可用的纹理。";
                     }
                     else
                     {
                         var maxPropTextures = GetNumberOfPedPropTextureVariations(Game.PlayerPed.Handle, propIndex, newSelectionIndex);
-                        listItem.Description = $"Select a prop using the arrow keys and press ~o~enter~s~ to cycle through all available textures. Currently selected texture: #{textureIndex + 1} (of {maxPropTextures}).";
+                        listItem.Description = $"使用箭头键选择一个道具，然后按 ~o~回车~s~ 以循环浏览所有可用的纹理。当前选中的纹理是：#{textureIndex + 1}（共 {maxPropTextures} 个）。";
                     }
                 }
             };
@@ -1362,7 +1445,7 @@ namespace vMenuClient.menus
                     ClearPedProp(Game.PlayerPed.Handle, propIndex);
                     currentCharacter.PropVariations.props ??= new Dictionary<int, KeyValuePair<int, int>>();
                     currentCharacter.PropVariations.props[propIndex] = new KeyValuePair<int, int>(-1, -1);
-                    listItem.Description = $"Select a prop using the arrow keys and press ~o~enter~s~ to cycle through all available textures.";
+                    listItem.Description = $"使用箭头键选择一个道具，然后按 ~o~回车~s~ 以循环浏览所有可用的纹理。";
                 }
                 else
                 {
@@ -1371,12 +1454,12 @@ namespace vMenuClient.menus
                     currentCharacter.PropVariations.props[propIndex] = new KeyValuePair<int, int>(listIndex, newTextureIndex);
                     if (GetPedPropIndex(Game.PlayerPed.Handle, propIndex) == -1)
                     {
-                        listItem.Description = $"Select a prop using the arrow keys and press ~o~enter~s~ to cycle through all available textures.";
+                        listItem.Description = $"使用箭头键选择一个道具，然后按 ~o~回车~s~ 以循环浏览所有可用的纹理。";
                     }
                     else
                     {
                         var maxPropTextures = GetNumberOfPedPropTextureVariations(Game.PlayerPed.Handle, propIndex, listIndex);
-                        listItem.Description = $"Select a prop using the arrow keys and press ~o~enter~s~ to cycle through all available textures. Currently selected texture: #{newTextureIndex + 1} (of {maxPropTextures}).";
+                        listItem.Description = $"使用箭头键选择一个道具，然后按 ~o~回车~s~ 以循环浏览所有可用的纹理。当前选中的纹理是：#{newTextureIndex + 1}（共 {maxPropTextures} 个）。";
                     }
                 }
                 //propsMenu.UpdateScaleform();
@@ -1434,31 +1517,31 @@ namespace vMenuClient.menus
 
             var faceFeaturesNamesList = new string[20]
             {
-                "Nose Width",               // 0
-                "Noes Peak Height",         // 1
-                "Nose Peak Length",         // 2
-                "Nose Bone Height",         // 3
-                "Nose Peak Lowering",       // 4
-                "Nose Bone Twist",          // 5
-                "Eyebrows Height",          // 6
-                "Eyebrows Depth",           // 7
-                "Cheekbones Height",        // 8
-                "Cheekbones Width",         // 9
-                "Cheeks Width",             // 10
-                "Eyes Opening",             // 11
-                "Lips Thickness",           // 12
-                "Jaw Bone Width",           // 13
-                "Jaw Bone Depth/Length",    // 14
-                "Chin Height",              // 15
-                "Chin Depth/Length",        // 16
-                "Chin Width",               // 17
-                "Chin Hole Size",           // 18
-                "Neck Thickness"            // 19
+                "鼻子宽度",               // 0
+                "鼻尖高度",               // 1
+                "鼻尖长度",               // 2
+                "鼻骨高度",               // 3
+                "鼻尖下垂",               // 4
+                "鼻骨扭曲",               // 5
+                "眉毛高度",               // 6
+                "眉毛深度",               // 7
+                "颧骨高度",               // 8
+                "颧骨宽度",               // 9
+                "脸颊宽度",               // 10
+                "眼睛开合",               // 11
+                "嘴唇厚度",               // 12
+                "下颚骨宽度",             // 13
+                "下颚骨深度/长度",        // 14
+                "下巴高度",               // 15
+                "下巴深度/长度",          // 16
+                "下巴宽度",               // 17
+                "下巴凹槽大小",           // 18
+                "脖子厚度"                // 19
             };
 
             for (var i = 0; i < 20; i++)
             {
-                var faceFeature = new MenuSliderItem(faceFeaturesNamesList[i], $"Set the {faceFeaturesNamesList[i]} face feature value.", 0, 20, 10, true);
+                var faceFeature = new MenuSliderItem(faceFeaturesNamesList[i], $"设置 {faceFeaturesNamesList[i]} 面部特征", 0, 20, 10, true);
                 faceShapeMenu.AddMenuItem(faceFeature);
             }
 
@@ -1611,106 +1694,105 @@ namespace vMenuClient.menus
                     var tat = new KeyValuePair<string, string>(Tattoo.collectionName, Tattoo.name);
                     if (currentCharacter.PedTatttoos.HeadTattoos.Contains(tat))
                     {
-                        Subtitle.Custom($"Tattoo #{tattooIndex + 1} has been ~r~removed~s~.");
+                        Subtitle.Custom($"纹身 #{tattooIndex + 1} 已被 ~r~移除~s~。");
                         currentCharacter.PedTatttoos.HeadTattoos.Remove(tat);
                     }
                     else
                     {
-                        Subtitle.Custom($"Tattoo #{tattooIndex + 1} has been ~g~added~s~.");
+                        Subtitle.Custom($"纹身 #{tattooIndex + 1} 已被 ~g~添加~s~。");
                         currentCharacter.PedTatttoos.HeadTattoos.Add(tat);
                     }
                 }
-                else if (menuIndex == 1) // torso
+                else if (menuIndex == 1) // 躯干
                 {
                     var Tattoo = currentCharacter.IsMale ? MaleTattoosCollection.TORSO.ElementAt(tattooIndex) : FemaleTattoosCollection.TORSO.ElementAt(tattooIndex);
                     var tat = new KeyValuePair<string, string>(Tattoo.collectionName, Tattoo.name);
                     if (currentCharacter.PedTatttoos.TorsoTattoos.Contains(tat))
                     {
-                        Subtitle.Custom($"Tattoo #{tattooIndex + 1} has been ~r~removed~s~.");
+                        Subtitle.Custom($"纹身 #{tattooIndex + 1} 已被 ~r~移除~s~。");
                         currentCharacter.PedTatttoos.TorsoTattoos.Remove(tat);
                     }
                     else
                     {
-                        Subtitle.Custom($"Tattoo #{tattooIndex + 1} has been ~g~added~s~.");
+                        Subtitle.Custom($"纹身 #{tattooIndex + 1} 已被 ~g~添加~s~。");
                         currentCharacter.PedTatttoos.TorsoTattoos.Add(tat);
                     }
                 }
-                else if (menuIndex == 2) // left arm
+                else if (menuIndex == 2) // 左臂
                 {
                     var Tattoo = currentCharacter.IsMale ? MaleTattoosCollection.LEFT_ARM.ElementAt(tattooIndex) : FemaleTattoosCollection.LEFT_ARM.ElementAt(tattooIndex);
                     var tat = new KeyValuePair<string, string>(Tattoo.collectionName, Tattoo.name);
                     if (currentCharacter.PedTatttoos.LeftArmTattoos.Contains(tat))
                     {
-                        Subtitle.Custom($"Tattoo #{tattooIndex + 1} has been ~r~removed~s~.");
+                        Subtitle.Custom($"纹身 #{tattooIndex + 1} 已被 ~r~移除~s~。");
                         currentCharacter.PedTatttoos.LeftArmTattoos.Remove(tat);
                     }
                     else
                     {
-                        Subtitle.Custom($"Tattoo #{tattooIndex + 1} has been ~g~added~s~.");
+                        Subtitle.Custom($"纹身 #{tattooIndex + 1} 已被 ~g~添加~s~。");
                         currentCharacter.PedTatttoos.LeftArmTattoos.Add(tat);
                     }
                 }
-                else if (menuIndex == 3) // right arm
+                else if (menuIndex == 3) // 右臂
                 {
                     var Tattoo = currentCharacter.IsMale ? MaleTattoosCollection.RIGHT_ARM.ElementAt(tattooIndex) : FemaleTattoosCollection.RIGHT_ARM.ElementAt(tattooIndex);
                     var tat = new KeyValuePair<string, string>(Tattoo.collectionName, Tattoo.name);
                     if (currentCharacter.PedTatttoos.RightArmTattoos.Contains(tat))
                     {
-                        Subtitle.Custom($"Tattoo #{tattooIndex + 1} has been ~r~removed~s~.");
+                        Subtitle.Custom($"纹身 #{tattooIndex + 1} 已被 ~r~移除~s~。");
                         currentCharacter.PedTatttoos.RightArmTattoos.Remove(tat);
                     }
                     else
                     {
-                        Subtitle.Custom($"Tattoo #{tattooIndex + 1} has been ~g~added~s~.");
+                        Subtitle.Custom($"纹身 #{tattooIndex + 1} 已被 ~g~添加~s~。");
                         currentCharacter.PedTatttoos.RightArmTattoos.Add(tat);
                     }
                 }
-                else if (menuIndex == 4) // left leg
+                else if (menuIndex == 4) // 左腿
                 {
                     var Tattoo = currentCharacter.IsMale ? MaleTattoosCollection.LEFT_LEG.ElementAt(tattooIndex) : FemaleTattoosCollection.LEFT_LEG.ElementAt(tattooIndex);
                     var tat = new KeyValuePair<string, string>(Tattoo.collectionName, Tattoo.name);
                     if (currentCharacter.PedTatttoos.LeftLegTattoos.Contains(tat))
                     {
-                        Subtitle.Custom($"Tattoo #{tattooIndex + 1} has been ~r~removed~s~.");
+                        Subtitle.Custom($"纹身 #{tattooIndex + 1} 已被 ~r~移除~s~。");
                         currentCharacter.PedTatttoos.LeftLegTattoos.Remove(tat);
                     }
                     else
                     {
-                        Subtitle.Custom($"Tattoo #{tattooIndex + 1} has been ~g~added~s~.");
+                        Subtitle.Custom($"纹身 #{tattooIndex + 1} 已被 ~g~添加~s~。");
                         currentCharacter.PedTatttoos.LeftLegTattoos.Add(tat);
                     }
                 }
-                else if (menuIndex == 5) // right leg
+                else if (menuIndex == 5) // 右腿
                 {
                     var Tattoo = currentCharacter.IsMale ? MaleTattoosCollection.RIGHT_LEG.ElementAt(tattooIndex) : FemaleTattoosCollection.RIGHT_LEG.ElementAt(tattooIndex);
                     var tat = new KeyValuePair<string, string>(Tattoo.collectionName, Tattoo.name);
                     if (currentCharacter.PedTatttoos.RightLegTattoos.Contains(tat))
                     {
-                        Subtitle.Custom($"Tattoo #{tattooIndex + 1} has been ~r~removed~s~.");
+                        Subtitle.Custom($"纹身 #{tattooIndex + 1} 已被 ~r~移除~s~。");
                         currentCharacter.PedTatttoos.RightLegTattoos.Remove(tat);
                     }
                     else
                     {
-                        Subtitle.Custom($"Tattoo #{tattooIndex + 1} has been ~g~added~s~.");
+                        Subtitle.Custom($"纹身 #{tattooIndex + 1} 已被 ~g~添加~s~。");
                         currentCharacter.PedTatttoos.RightLegTattoos.Add(tat);
                     }
                 }
-                else if (menuIndex == 6) // badges
+                else if (menuIndex == 6) // 徽章
                 {
                     var Tattoo = currentCharacter.IsMale ? MaleTattoosCollection.BADGES.ElementAt(tattooIndex) : FemaleTattoosCollection.BADGES.ElementAt(tattooIndex);
                     var tat = new KeyValuePair<string, string>(Tattoo.collectionName, Tattoo.name);
                     if (currentCharacter.PedTatttoos.BadgeTattoos.Contains(tat))
                     {
-                        Subtitle.Custom($"Badge #{tattooIndex + 1} has been ~r~removed~s~.");
+                        Subtitle.Custom($"徽章 #{tattooIndex + 1} 已被 ~r~移除~s~。");
                         currentCharacter.PedTatttoos.BadgeTattoos.Remove(tat);
                     }
                     else
                     {
-                        Subtitle.Custom($"Badge #{tattooIndex + 1} has been ~g~added~s~.");
+                        Subtitle.Custom($"徽章 #{tattooIndex + 1} 已被 ~g~添加~s~。");
                         currentCharacter.PedTatttoos.BadgeTattoos.Add(tat);
                     }
                 }
-
                 ApplySavedTattoos();
 
             };
@@ -1718,7 +1800,7 @@ namespace vMenuClient.menus
             // eventhandler for when a tattoo is selected.
             tattoosMenu.OnItemSelect += (sender, item, index) =>
             {
-                Notify.Success("All tattoos have been removed.");
+                Notify.Success("所有纹身已被移除。");
                 currentCharacter.PedTatttoos.HeadTattoos.Clear();
                 currentCharacter.PedTatttoos.TorsoTattoos.Clear();
                 currentCharacter.PedTatttoos.LeftArmTattoos.Clear();
@@ -1772,26 +1854,26 @@ namespace vMenuClient.menus
                         createCharacterMenu.GoBack();
                     }
                 }
-                else if (item == exitNoSave) // exit without saving
+                else if (item == exitNoSave) // 退出不保存
                 {
                     var confirm = false;
-                    AddTextEntry("vmenu_warning_message_first_line", "Are you sure you want to exit the character creator?");
-                    AddTextEntry("vmenu_warning_message_second_line", "You will lose all (unsaved) customization!");
+                    AddTextEntry("vmenu_warning_message_first_line", "您确定要退出角色创建器吗？");
+                    AddTextEntry("vmenu_warning_message_second_line", "您将丢失所有（未保存的）自定义内容！");
                     createCharacterMenu.CloseMenu();
 
-                    // wait for confirmation or cancel input.
+                    // 等待确认或取消输入。
                     while (true)
                     {
                         await BaseScript.Delay(0);
                         var unk = 1;
                         var unk2 = 1;
                         SetWarningMessage("vmenu_warning_message_first_line", 20, "vmenu_warning_message_second_line", true, 0, ref unk, ref unk2, true, 0);
-                        if (IsControlJustPressed(2, 201) || IsControlJustPressed(2, 217)) // continue/accept
+                        if (IsControlJustPressed(2, 201) || IsControlJustPressed(2, 217)) // 继续/接受
                         {
                             confirm = true;
                             break;
                         }
-                        else if (IsControlJustPressed(2, 202)) // cancel
+                        else if (IsControlJustPressed(2, 202)) // 取消
                         {
                             break;
                         }
@@ -2108,12 +2190,12 @@ namespace vMenuClient.menus
 
             MenuController.AddMenu(manageSavedCharacterMenu);
 
-            var spawnPed = new MenuItem("Spawn Saved Character", "Spawns the selected saved character.");
-            editPedBtn = new MenuItem("Edit Saved Character", "This allows you to edit everything about your saved character. The changes will be saved to this character's save file entry once you hit the save button.");
-            var clonePed = new MenuItem("Clone Saved Character", "This will make a clone of your saved character. It will ask you to provide a name for that character. If that name is already taken the action will be canceled.");
-            var setAsDefaultPed = new MenuItem("Set As Default Character", "If you set this character as your default character, and you enable the 'Respawn As Default MP Character' option in the Misc Settings menu, then you will be set as this character whenever you (re)spawn.");
-            var renameCharacter = new MenuItem("Rename Saved Character", "You can rename this saved character. If the name is already taken then the action will be canceled.");
-            var delPed = new MenuItem("Delete Saved Character", "Deletes the selected saved character. This can not be undone!")
+            var spawnPed = new MenuItem("生成保存的角色", "生成所选的保存角色。");
+            editPedBtn = new MenuItem("编辑保存的角色", "这允许您编辑保存角色的所有内容。更改将在您点击保存按钮后保存到该角色的保存文件中。");
+            var clonePed = new MenuItem("克隆保存的角色", "这将克隆您的保存角色。系统会要求您为该角色提供一个名称。如果该名称已经被占用，则操作将被取消。");
+            var setAsDefaultPed = new MenuItem("设置为默认角色", "如果您将此角色设置为默认角色，并在杂项设置菜单中启用“重生为默认MP角色”选项，那么每当您重生时，您将变为该角色。");
+            var renameCharacter = new MenuItem("重命名保存的角色", "您可以重命名此保存的角色。如果名称已被占用，则操作将被取消。");
+            var delPed = new MenuItem("删除保存的角色", "删除所选的保存角色。此操作无法撤销！")
             {
                 LeftIcon = MenuItem.Icon.WARNING
             };
@@ -2146,7 +2228,7 @@ namespace vMenuClient.menus
                 else if (item == clonePed)
                 {
                     var tmpCharacter = StorageManager.GetSavedMpCharacterData("mp_ped_" + selectedSavedCharacterManageName);
-                    var name = await GetUserInput(windowTitle: "Enter a name for the cloned character", defaultText: tmpCharacter.SaveName.Substring(7), maxInputLength: 30);
+                    var name = await GetUserInput(windowTitle: "输入克隆角色的名称", defaultText: tmpCharacter.SaveName.Substring(7), maxInputLength: 30);
                     if (string.IsNullOrEmpty(name))
                     {
                         Notify.Error(CommonErrors.InvalidSaveName);
@@ -2162,14 +2244,14 @@ namespace vMenuClient.menus
                             tmpCharacter.SaveName = "mp_ped_" + name;
                             if (StorageManager.SaveJsonData("mp_ped_" + name, JsonConvert.SerializeObject(tmpCharacter), false))
                             {
-                                Notify.Success($"Your character has been cloned. The name of the cloned character is: ~g~<C>{name}</C>~s~.");
+                                Notify.Success($"您的角色已被克隆。克隆角色的名称是: ~g~<C>{name}</C>~s~。");
                                 MenuController.CloseAllMenus();
                                 UpdateSavedPedsMenu();
                                 savedCharactersMenu.OpenMenu();
                             }
                             else
                             {
-                                Notify.Error("The clone could not be created, reason unknown. Does a character already exist with that name? :(");
+                                Notify.Error("无法创建克隆，原因未知。是否已经存在该名称的角色？ :(");
                             }
                         }
                     }
@@ -2177,7 +2259,7 @@ namespace vMenuClient.menus
                 else if (item == renameCharacter)
                 {
                     var tmpCharacter = StorageManager.GetSavedMpCharacterData("mp_ped_" + selectedSavedCharacterManageName);
-                    var name = await GetUserInput(windowTitle: "Enter a new character name", defaultText: tmpCharacter.SaveName.Substring(7), maxInputLength: 30);
+                    var name = await GetUserInput(windowTitle: "输入新的角色名称", defaultText: tmpCharacter.SaveName.Substring(7), maxInputLength: 30);
                     if (string.IsNullOrEmpty(name))
                     {
                         Notify.Error(CommonErrors.InvalidInput);
@@ -2194,7 +2276,7 @@ namespace vMenuClient.menus
                             if (StorageManager.SaveJsonData("mp_ped_" + name, JsonConvert.SerializeObject(tmpCharacter), false))
                             {
                                 StorageManager.DeleteSavedStorageItem("mp_ped_" + selectedSavedCharacterManageName);
-                                Notify.Success($"Your character has been renamed to ~g~<C>{name}</C>~s~.");
+                                Notify.Success($"您的角色已被重命名为 ~g~<C>{name}</C>~s~.");
                                 UpdateSavedPedsMenu();
                                 while (!MenuController.IsAnyMenuOpen())
                                 {
@@ -2204,7 +2286,7 @@ namespace vMenuClient.menus
                             }
                             else
                             {
-                                Notify.Error("Something went wrong while renaming your character, your old character will NOT be deleted because of this.");
+                                Notify.Error("重命名角色时出现问题，您的旧角色不会被删除。");
                             }
                         }
                     }
@@ -2215,7 +2297,7 @@ namespace vMenuClient.menus
                     {
                         delPed.Label = "";
                         DeleteResourceKvp("mp_ped_" + selectedSavedCharacterManageName);
-                        Notify.Success("Your saved character has been deleted.");
+                        Notify.Success("您的保存角色已被删除。");
                         manageSavedCharacterMenu.GoBack();
                         UpdateSavedPedsMenu();
                         manageSavedCharacterMenu.RefreshIndex();
@@ -2227,7 +2309,7 @@ namespace vMenuClient.menus
                 }
                 else if (item == setAsDefaultPed)
                 {
-                    Notify.Success($"Your character <C>{selectedSavedCharacterManageName}</C> will now be used as your default character whenever you (re)spawn.");
+                    Notify.Success($"您的角色 <C>{selectedSavedCharacterManageName}</C> 将会被设置为默认角色，每当您（重新）生成时将使用此角色。");
                     SetResourceKvp("vmenu_default_character", "mp_ped_" + selectedSavedCharacterManageName);
                 }
 
@@ -2252,7 +2334,7 @@ namespace vMenuClient.menus
 
                 if (name == "Create New")
                 {
-                    var newName = await GetUserInput(windowTitle: "Enter a category name.", maxInputLength: 30);
+                    var newName = await GetUserInput(windowTitle: "输入类别名称。", maxInputLength: 30);
                     if (string.IsNullOrEmpty(newName) || newName.ToLower() == "uncategorized" || newName.ToLower() == "create new")
                     {
                         Notify.Error(CommonErrors.InvalidInput);
@@ -2260,7 +2342,7 @@ namespace vMenuClient.menus
                     }
                     else
                     {
-                        var description = await GetUserInput(windowTitle: "Enter a category description (optional).", maxInputLength: 120);
+                        var description = await GetUserInput(windowTitle: "输入类别描述（可选）。", maxInputLength: 120);
                         var newCategory = new MpCharacterCategory
                         {
                             Name = newName,
@@ -2269,8 +2351,8 @@ namespace vMenuClient.menus
 
                         if (StorageManager.SaveJsonData("mp_character_category_" + newName, JsonConvert.SerializeObject(newCategory), false))
                         {
-                            Notify.Success($"Your category (~g~<C>{newName}</C>~s~) has been saved.");
-                            Log($"Saved Category {newName}.");
+                            Notify.Success($"您的类别 (~g~<C>{newName}</C>~s~) 已被保存。");
+                            Log($"保存了类别 {newName}。");
                             MenuController.CloseAllMenus();
                             UpdateSavedPedsMenu();
                             savedCharactersCategoryMenu.OpenMenu();
@@ -2280,7 +2362,7 @@ namespace vMenuClient.menus
                         }
                         else
                         {
-                            Notify.Error($"Saving failed, most likely because this name (~y~<C>{newName}</C>~s~) is already in use.");
+                            Notify.Error($"保存失败，可能是因为这个名称 (~y~<C>{newName}</C>~s~) 已被使用。");
                             return;
                         }
                     }
@@ -2291,11 +2373,11 @@ namespace vMenuClient.menus
                 var json = JsonConvert.SerializeObject(tmpCharacter);
                 if (StorageManager.SaveJsonData(tmpCharacter.SaveName, json, true))
                 {
-                    Notify.Success("Your character was saved successfully.");
+                    Notify.Success("您的角色已成功保存。");
                 }
                 else
                 {
-                    Notify.Error("Your character could not be saved. Reason unknown. :(");
+                    Notify.Error("您的角色无法保存。原因未知。:(");
                 }
 
                 MenuController.CloseAllMenus();
@@ -2315,7 +2397,7 @@ namespace vMenuClient.menus
                 // Create new category
                 if (item.ItemData is not MpCharacterCategory)
                 {
-                    var name = await GetUserInput(windowTitle: "Enter a category name.", maxInputLength: 30);
+                    var name = await GetUserInput(windowTitle: "输入类别名称。", maxInputLength: 30);
                     if (string.IsNullOrEmpty(name) || name.ToLower() == "uncategorized" || name.ToLower() == "create new")
                     {
                         Notify.Error(CommonErrors.InvalidInput);
@@ -2323,7 +2405,7 @@ namespace vMenuClient.menus
                     }
                     else
                     {
-                        var description = await GetUserInput(windowTitle: "Enter a category description (optional).", maxInputLength: 120);
+                        var description = await GetUserInput(windowTitle: "输入类别描述（可选）。", maxInputLength: 120);
                         var newCategory = new MpCharacterCategory
                         {
                             Name = name,
@@ -2332,8 +2414,8 @@ namespace vMenuClient.menus
 
                         if (StorageManager.SaveJsonData("mp_character_category_" + name, JsonConvert.SerializeObject(newCategory), false))
                         {
-                            Notify.Success($"Your category (~g~<C>{name}</C>~s~) has been saved.");
-                            Log($"Saved Category {name}.");
+                            Notify.Success($"您的类别 (~g~<C>{name}</C>~s~) 已被保存。");
+                            Log($"保存了类别 {name}。");
                             MenuController.CloseAllMenus();
                             UpdateSavedPedsMenu();
                             savedCharactersCategoryMenu.OpenMenu();
@@ -2342,7 +2424,7 @@ namespace vMenuClient.menus
                         }
                         else
                         {
-                            Notify.Error($"Saving failed, most likely because this name (~y~<C>{name}</C>~s~) is already in use.");
+                            Notify.Error($"保存失败，可能是因为这个名称 (~y~<C>{name}</C>~s~) 已被使用。");
                             return;
                         }
                     }
@@ -2356,7 +2438,7 @@ namespace vMenuClient.menus
                 bool isUncategorized = currentCategory.Name == "Uncategorized";
 
                 savedCharactersCategoryMenu.MenuTitle = currentCategory.Name;
-                savedCharactersCategoryMenu.MenuSubtitle = $"~s~Category: ~y~{currentCategory.Name}";
+                savedCharactersCategoryMenu.MenuSubtitle = $"~s~类别: ~y~{currentCategory.Name}";
                 savedCharactersCategoryMenu.ClearMenuItems();
 
                 var iconNames = Enum.GetNames(typeof(MenuItem.Icon)).ToList();
@@ -2384,25 +2466,25 @@ namespace vMenuClient.menus
                     return iconNames[newIndex];
                 }
 
-                var renameBtn = new MenuItem("Rename Category", "Rename this category.")
+                var renameBtn = new MenuItem("重命名类别", "重命名此类别。")
                 {
                     Enabled = !isUncategorized
                 };
-                var descriptionBtn = new MenuItem("Change Category Description", "Change this category's description.")
+                var descriptionBtn = new MenuItem("更改类别描述", "更改此类别的描述。")
                 {
                     Enabled = !isUncategorized
                 };
-                var iconBtn = new MenuDynamicListItem("Change Category Icon", iconNames[(int)currentCategory.Icon], new MenuDynamicListItem.ChangeItemCallback(ChangeCallback), "Change this category's icon. Select to save.")
+                var iconBtn = new MenuDynamicListItem("更改类别图标", iconNames[(int)currentCategory.Icon], new MenuDynamicListItem.ChangeItemCallback(ChangeCallback), "更改此类别的图标。选择以保存。")
                 {
                     Enabled = !isUncategorized,
                     RightIcon = currentCategory.Icon
                 };
-                var deleteBtn = new MenuItem("Delete Category", "Delete this category. This can not be undone!")
+                var deleteBtn = new MenuItem("删除类别", "删除此类别。这不能被撤销！")
                 {
                     RightIcon = MenuItem.Icon.WARNING,
                     Enabled = !isUncategorized
                 };
-                var deleteCharsBtn = new MenuCheckboxItem("Delete All Characters", "If checked, when \"Delete Category\" is pressed, all the saved characters in this category will be deleted as well. If not checked, saved characters will be moved to \"Uncategorized\".")
+                var deleteCharsBtn = new MenuCheckboxItem("删除所有角色", "如果选中，当点击 \"删除类别\" 时，此类别中的所有保存角色也将被删除。如果未选中，保存角色将被移动到 \"未分类\"。")
                 {
                     Enabled = !isUncategorized
                 };
@@ -2442,7 +2524,7 @@ namespace vMenuClient.menus
                             }
                         }
 
-                        var btn = new MenuItem(name, "Click to spawn, edit, clone, rename or delete this saved character.")
+                        var btn = new MenuItem(name, "点击以生成、编辑、克隆、重命名或删除此保存角色。")
                         {
                             Label = "→→→",
                             LeftIcon = tmpData.IsMale ? MenuItem.Icon.MALE : MenuItem.Icon.FEMALE,
@@ -2451,7 +2533,7 @@ namespace vMenuClient.menus
                         if (defaultChar == "mp_ped_" + name)
                         {
                             btn.LeftIcon = MenuItem.Icon.TICK;
-                            btn.Description += " ~g~This character is currently set as your default character and will be used whenever you (re)spawn.";
+                            btn.Description += " ~g~此角色当前设置为您的默认角色，将在您重生成时使用。";
                         }
                         savedCharactersCategoryMenu.AddMenuItem(btn);
                         MenuController.BindMenuItem(savedCharactersCategoryMenu, manageSavedCharacterMenu, btn);
@@ -2465,7 +2547,7 @@ namespace vMenuClient.menus
                 {
                     // Rename Category
                     case 0:
-                        var name = await GetUserInput(windowTitle: "Enter a new category name", defaultText: currentCategory.Name, maxInputLength: 30);
+                        var name = await GetUserInput(windowTitle: "输入新类别名称", defaultText: currentCategory.Name, maxInputLength: 30);
 
                         if (string.IsNullOrEmpty(name) || name.ToLower() == "uncategorized" || name.ToLower() == "create new")
                         {
@@ -2513,42 +2595,42 @@ namespace vMenuClient.menus
                                     if (StorageManager.SaveJsonData(tmpData.SaveName, JsonConvert.SerializeObject(tmpData), true))
                                     {
                                         updatedCount++;
-                                        Log($"Updated category for \"{tmpData.SaveName}\"");
+                                        Log($"更新了角色 \"{tmpData.SaveName}\" 的类别");
                                     }
                                     else
                                     {
-                                        Log($"Something went wrong when updating category for \"{tmpData.SaveName}\"");
+                                        Log($"更新角色 \"{tmpData.SaveName}\" 的类别时出错");
                                     }
                                 }
                             }
 
-                            Notify.Success($"Your category has been renamed to ~g~<C>{name}</C>~s~. {updatedCount}/{totalCount} characters updated.");
+                           Notify.Success($"您的类别已重命名为 ~g~<C>{name}</C>~s~。 {updatedCount}/{totalCount} 角色已更新。");
                             MenuController.CloseAllMenus();
                             UpdateSavedPedsMenu();
                             savedCharactersMenu.OpenMenu();
                         }
                         else
                         {
-                            Notify.Error("Something went wrong while renaming your category, your old category will NOT be deleted because of this.");
+                            Notify.Error("重命名类别时出现问题，您的旧类别不会被删除。");
                         }
                         break;
 
                     // Change Category Description
                     case 1:
-                        var description = await GetUserInput(windowTitle: "Enter a new category description", defaultText: currentCategory.Description, maxInputLength: 120);
+                        var description = await GetUserInput(windowTitle: "输入新类别描述", defaultText: currentCategory.Description, maxInputLength: 120);
 
                         currentCategory.Description = description;
 
                         if (StorageManager.SaveJsonData("mp_character_category_" + currentCategory.Name, JsonConvert.SerializeObject(currentCategory), true))
                         {
-                            Notify.Success($"Your category description has been changed.");
+                           Notify.Success("您的类别描述已更改。");
                             MenuController.CloseAllMenus();
                             UpdateSavedPedsMenu();
                             savedCharactersMenu.OpenMenu();
                         }
                         else
                         {
-                            Notify.Error("Something went wrong while changing your category description.");
+                            Notify.Error("更改类别描述时出现问题。");
                         }
                         break;
 
@@ -2597,17 +2679,17 @@ namespace vMenuClient.menus
                                         if (StorageManager.SaveJsonData(tmpData.SaveName, JsonConvert.SerializeObject(tmpData), true))
                                         {
                                             updatedCount++;
-                                            Log($"Updated category for \"{tmpData.SaveName}\"");
+                                            Log($"更新了角色 \"{tmpData.SaveName}\" 的类别");
                                         }
                                         else
                                         {
-                                            Log($"Something went wrong when updating category for \"{tmpData.SaveName}\"");
+                                            Log($"更新角色 \"{tmpData.SaveName}\" 的类别时出错");
                                         }
                                     }
                                 }
                             }
 
-                            Notify.Success($"Your saved category has been deleted. {updatedCount}/{totalCount} characters {(deletePeds ? "deleted" : "updated")}.");
+                            Notify.Success($"您的保存类别已删除。 {updatedCount}/{totalCount} 角色 {(deletePeds ? "已删除" : "已更新")}。");
                             MenuController.CloseAllMenus();
                             UpdateSavedPedsMenu();
                             savedCharactersMenu.OpenMenu();
@@ -2646,12 +2728,12 @@ namespace vMenuClient.menus
 
                 if (StorageManager.SaveJsonData("mp_character_category_" + currentCategory.Name, JsonConvert.SerializeObject(currentCategory), true))
                 {
-                    Notify.Success($"Your category icon been changed to ~g~<C>{iconNames[iconIndex]}</C>~s~.");
+                    Notify.Success($"您的分类图标已更改为 ~g~<C>{iconNames[iconIndex]}</C>~s~.");
                     UpdateSavedPedsMenu();
                 }
                 else
                 {
-                    Notify.Error("Something went wrong while changing your category icon.");
+                    Notify.Error("更改分类图标时出现问题。");
                 }
             };
         }
@@ -2665,19 +2747,19 @@ namespace vMenuClient.menus
 
             savedCharactersMenu.ClearMenuItems();
 
-            var createCategoryBtn = new MenuItem("Create Category", "Create a new character category.")
+            var createCategoryBtn = new MenuItem("创建分类", "创建一个新的角色分类。")
             {
                 Label = "→→→"
             };
             savedCharactersMenu.AddMenuItem(createCategoryBtn);
 
-            var spacer = GetSpacerMenuItem("↓ Character Categories ↓");
+            var spacer = GetSpacerMenuItem("↓ 角色分类 ↓");
             savedCharactersMenu.AddMenuItem(spacer);
 
             var uncategorized = new MpCharacterCategory
             {
                 Name = "Uncategorized",
-                Description = "All saved MP Characters that have not been assigned to a category."
+                Description = "所有未分配到分类的保存MP角色。"
             };
             var uncategorizedBtn = new MenuItem(uncategorized.Name, uncategorized.Description)
             {
