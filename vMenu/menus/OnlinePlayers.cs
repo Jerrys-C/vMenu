@@ -324,7 +324,7 @@ namespace vMenuClient.menus
                 {
                     var pItem = new MenuItem($"{GetSafePlayerName(p.Name)}", $"点击查看此玩家的选项。服务器ID: {p.ServerId}。本地ID: {p.Handle}。")
                     {
-                        Label = $"ID: #{p.ServerId} →→→"
+                        Label = $"服务器 #{p.ServerId} →→→"
                     };
                     menu.AddMenuItem(pItem);
                     MenuController.BindMenuItem(menu, playerMenu, pItem);
